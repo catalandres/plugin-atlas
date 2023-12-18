@@ -1,7 +1,7 @@
 import * as xml2js from 'xml2js';
+import { array } from 'arraysure';
 import * as Metadata from '../types/metadata.js';
 import { Named, FullNamed, ObjectNamed } from '../types/metadata-addon.js';
-import { arraynge } from './arraynge.js';
 
 const nameRegEx = new RegExp('.+/([^.]*)');
 const parserOptions: xml2js.ParserOptions = {
@@ -75,7 +75,7 @@ export class XmlParser {
     const objectName = nameRegEx.exec(fileName)?.[1] as string;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     xml2js.parseString(xml, parserOptions, (err, result: { Workflow: Metadata.Workflow }) => {
-      for (const thisRule of arraynge(result.Workflow.rules) as Array<ObjectNamed<FullNamed<Metadata.WorkflowRule>>>) {
+      for (const thisRule of array(result.Workflow.rules) as Array<ObjectNamed<FullNamed<Metadata.WorkflowRule>>>) {
         thisRule.objectName = objectName;
         workflowRules.push(thisRule);
       }
