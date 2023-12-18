@@ -1,7 +1,7 @@
 {
-  "name": "plugin-documentation",
+  "name": "plugin-documentation-atlas",
   "description": "A Salesforce CLI plugin to generate documentation for projects",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "@oclif/core": "^3.11.0",
     "@salesforce/core": "^6",
