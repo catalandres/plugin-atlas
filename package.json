@@ -3,7 +3,7 @@
   "description": "A Salesforce CLI plugin to generate documentation for projects",
   "version": "1.0.0",
   "dependencies": {
-    "@oclif/core": "^3.11.0",
+    "@oclif/core": "^3.15.0",
     "@salesforce/core": "^6",
     "@salesforce/sf-plugins-core": "^5.0.5",
     "@types/shelljs": "^0.8.15",
