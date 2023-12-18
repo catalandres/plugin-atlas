@@ -6,7 +6,7 @@ import { SfProject, Messages } from '@salesforce/core';
 import { Atlas } from '../../../shared/Atlas.js';
 
 Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
-const messages = Messages.loadMessages('plugin-documentation', 'doc.generate.almanac');
+const messages = Messages.loadMessages('plugin-documentation-atlas', 'doc.generate.almanac');
 
 export type DocGenerateAtlasResult = {
   path: string;
