@@ -1,9 +1,9 @@
 // import { TestContext } from '@salesforce/core/lib/testSetup.js';
 // import { expect } from 'chai';
 // import { stubSfCommandUx } from '@salesforce/sf-plugins-core';
-// import DocGenerateAlmanac from '../../../../src/commands/doc/generate/almanac.js';
+// import DocGenerateAtlas from '../../../../src/commands/doc/generate/atlas.js';
 
-// describe('doc generate almanac', () => {
+// describe('doc generate atlas', () => {
 //   const $$ = new TestContext();
 //   let sfCommandStubs: ReturnType<typeof stubSfCommandUx>;
 
@@ -16,7 +16,7 @@
 //   });
 
 //   it('runs hello', async () => {
-//     await DocGenerateAlmanac.run([]);
+//     await DocGenerateAtlas.run([]);
 //     const output = sfCommandStubs.log
 //       .getCalls()
 //       .flatMap((c) => c.args)
@@ -25,14 +25,14 @@
 //   });
 
 //   it('runs hello with --json and no provided name', async () => {
-//     const result = await DocGenerateAlmanac.run([]);
+//     const result = await DocGenerateAtlas.run([]);
 //     expect(result.path).to.equal(
-//       '/Users/andres/Projects/proj-plugins/plugin-documentation/src/commands/doc/generate/almanac.ts'
+//       '/Users/andres/Projects/proj-plugins/plugin-documentation/src/commands/doc/generate/atlas.ts'
 //     );
 //   });
 
 //   it('runs hello world --name Astro', async () => {
-//     await DocGenerateAlmanac.run(['--name', 'Astro']);
+//     await DocGenerateAtlas.run(['--name', 'Astro']);
 //     const output = sfCommandStubs.log
 //       .getCalls()
 //       .flatMap((c) => c.args)

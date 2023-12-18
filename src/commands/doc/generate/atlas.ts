@@ -6,13 +6,13 @@ import { SfProject, Messages } from '@salesforce/core';
 import { Atlas } from '../../../shared/Atlas.js';
 
 Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
-const messages = Messages.loadMessages('plugin-documentation-atlas', 'doc.generate.almanac');
+const messages = Messages.loadMessages('plugin-documentation-atlas', 'doc.generate.atlas');
 
 export type DocGenerateAtlasResult = {
   path: string;
 };
 
-export default class DocGenerateAlmanac extends SfCommand<DocGenerateAtlasResult> {
+export default class DocGenerateAtlas extends SfCommand<DocGenerateAtlasResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
@@ -27,7 +27,7 @@ export default class DocGenerateAlmanac extends SfCommand<DocGenerateAtlasResult
   };
 
   public async run(): Promise<DocGenerateAtlasResult> {
-    // const { flags } = await this.parse(DocGenerateAlmanac);
+    // const { flags } = await this.parse(DocGenerateAtlas);
     this.spinner.start('Generating documentation atlas');
     const atlas = new Atlas(SfProject.getInstance().getPath());
     await atlas.initialize(this.spinner);
