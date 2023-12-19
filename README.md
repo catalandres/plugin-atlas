@@ -1,4 +1,4 @@
-# plugin-documentation
+# plugin-documentation-atlas
 
 [![NPM](https://img.shields.io/npm/v/plugin-documentation.svg?label=plugin-documentation)](https://www.npmjs.com/package/plugin-documentation) [![Downloads/week](https://img.shields.io/npm/dw/plugin-documentation.svg)](https://npmjs.org/package/plugin-documentation) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-documentation/main/LICENSE.txt)
 
@@ -9,7 +9,7 @@ This repository provides a template for creating a plugin for the Salesforce CLI
 1. Please get in touch with the Platform CLI team. We want to help you develop your plugin.
 2. Generate your plugin:
 
-   ```
+   ```bash
    sf plugins install dev
    sf dev generate plugin
 
@@ -117,7 +117,7 @@ sf plugins
 
 Say hello either to the world or someone you know.
 
-```
+```bash
 USAGE
   $ sf hello world [--json] [-n <value>]
 
