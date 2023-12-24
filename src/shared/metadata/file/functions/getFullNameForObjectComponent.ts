@@ -1,7 +1,7 @@
-import * as MetadataFile from '../index.js';
+import { getBasenameWithoutExtension, getNameOfSecondToLastFolderLevel } from '../index.js';
 
 export function getFullNameForObjectComponent(fullPath: string): string {
-  const objectName = MetadataFile.getNameOfSecondToLastFolderLevel(fullPath);
-  const componentName = MetadataFile.getBasenameWithoutExtension(fullPath);
+  const objectName = getNameOfSecondToLastFolderLevel(fullPath);
+  const componentName = getBasenameWithoutExtension(fullPath);
   return objectName + '.' + componentName;
 }
