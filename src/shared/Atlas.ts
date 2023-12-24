@@ -5,9 +5,8 @@ import { SfProject, NamedPackageDir } from '@salesforce/core';
 import * as ExcelJS from 'exceljs';
 import { Spinner } from '@salesforce/sf-plugins-core';
 import * as Metadata from './metadata/types/metadata.js';
-import { Extended } from './metadata/file/index.js';
 import { XmlParser } from './XmlParser.js';
-
+import { Extended, Album, Definition, ALL_DEFINITIONS, getExtension } from './metadata/file/index.js';
 // TO DO
 // - flexipages / lightning pages
 // - flows
@@ -15,8 +14,6 @@ import { XmlParser } from './XmlParser.js';
 // - lightning components
 
 export class Atlas {
-  public projectPath: string;
-
   public apexClasses: Array<Extended<Metadata.ApexClass>> = [];
   public apexTriggers: Array<Extended<Metadata.ApexTrigger>> = [];
   public visualforcePages: Array<Extended<Metadata.ApexPage>> = [];
@@ -50,12 +47,34 @@ export class Atlas {
   public flows: Array<Extended<Metadata.Flow>> = [];
   // public globalValueSets: Array<Extended<Metadata.GlobalValueSet>> = [];
 
+  public projectPath: string;
+  public album: Album = {};
+  private fileDefinitionsByExtension: Map<string, Definition>;
+  private metadataExtensions: Set<string>;
+
   public constructor(projectPath: string) {
     this.projectPath = projectPath;
+    this.fileDefinitionsByExtension = new Map();
+    for (const thisFileDefinition of ALL_DEFINITIONS) {
+      this.album[thisFileDefinition.list] = [];
+      if (thisFileDefinition.extension) {
+        this.fileDefinitionsByExtension.set(thisFileDefinition.extension, thisFileDefinition);
+      }
+    }
+    this.metadataExtensions = new Set(this.fileDefinitionsByExtension.keys());
   }
 
   public async initialize(spinner: Spinner): Promise<void> {
     const allFiles = await getAllProjectFiles(this.projectPath);
+    const allMetadataFiles = allFiles.filter((theFile) => this.isMetadataFile(theFile));
+
+    for (const thisFile of allMetadataFiles) {
+      spinner.status = thisFile;
+      const thisDefinition: Definition = this.fileDefinitionsByExtension.get(getExtension(thisFile))!;
+      const xml = fs.readFileSync(thisFile, 'utf-8');
+      this.absorb(XmlParser.getMetadata<Extended<typeof thisDefinition.metadataType>>(xml, thisFile, thisDefinition));
+    }
+
     for (const thisFile of allFiles) {
       spinner.status = thisFile;
 
@@ -171,6 +190,16 @@ export class Atlas {
     }
   }
 
+  private absorb(album: Album): void {
+    for (const thisList of Object.keys(album)) {
+      if (!this.album[thisList]) {
+        this.album[thisList] = [];
+      }
+      this.album[thisList].push(...album[thisList]);
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   public async writeXlsx(): Promise<string> {
     const workbook = new ExcelJS.default.Workbook();
 
@@ -833,6 +862,10 @@ export class Atlas {
     await mkdir(targetFolder, { recursive: true });
     await workbook.xlsx.writeFile(fileName);
     return fileName;
+  }
+
+  private isMetadataFile(thisFile: string): boolean {
+    return this.metadataExtensions.has(getExtension(thisFile));
   }
 }
 
