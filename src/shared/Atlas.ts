@@ -14,38 +14,7 @@ import { Extended, Album, Definition, ALL_DEFINITIONS, getExtension } from './me
 // - lightning components
 
 export class Atlas {
-  public apexClasses: Array<Extended<Metadata.ApexClass>> = [];
-  public apexTriggers: Array<Extended<Metadata.ApexTrigger>> = [];
-  public visualforcePages: Array<Extended<Metadata.ApexPage>> = [];
-  public visualforceComoponents: Array<Extended<Metadata.ApexComponent>> = [];
-  public auraComponents: Array<Extended<Metadata.AuraDefinitionBundle>> = [];
-  public lightningWebComponents: Array<Extended<Metadata.LightningComponentBundle>> = [];
-
-  public permissionSets: Array<Extended<Metadata.PermissionSet>> = [];
-  public permissionSetGroups: Array<Extended<Metadata.PermissionSetGroup>> = [];
-
   public workflowRules: Array<Extended<Metadata.WorkflowRule>> = [];
-
-  public objects: Array<Extended<Metadata.CustomObject>> = [];
-  public fields: Array<Extended<Metadata.CustomField>> = [];
-  public fieldSets: Array<Extended<Metadata.FieldSet>> = [];
-  public listViews: Array<Extended<Metadata.ListView>> = [];
-  public recordTypes: Array<Extended<Metadata.RecordType>> = [];
-  public validationRules: Array<Extended<Metadata.ValidationRule>> = [];
-  public compactLayouts: Array<Extended<Metadata.CompactLayout>> = [];
-  public webLinks: Array<Extended<Metadata.WebLink>> = [];
-
-  // public customLabels: Array<Extended<Metadata.CustomLabel>> = [];
-  public quickActions: Array<Extended<Metadata.QuickAction>> = [];
-  public tabs: Array<Extended<Metadata.CustomTab>> = [];
-  public layouts: Array<Extended<Metadata.Layout>> = [];
-  // public reports: Array<Extended<Metadata.Report>> = [];
-  // public reportFolders: Array<Extended<Metadata.ReportFolder>> = [];
-  // public dashboards: Array<Extended<Metadata.Dashboard>> = [];
-
-  public flexipages: Array<Extended<Metadata.FlexiPage>> = [];
-  public flows: Array<Extended<Metadata.Flow>> = [];
-  // public globalValueSets: Array<Extended<Metadata.GlobalValueSet>> = [];
 
   public projectPath: string;
   public album: Album = {};
@@ -78,114 +47,9 @@ export class Atlas {
     for (const thisFile of allFiles) {
       spinner.status = thisFile;
 
-      if (thisFile.endsWith('.cls-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.apexClasses.push(...XmlParser.getApexClasses(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.trigger-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.apexTriggers.push(...XmlParser.getApexTriggers(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.page-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.visualforcePages.push(...XmlParser.getVisualforcePages(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.component-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.visualforceComoponents.push(...XmlParser.getVisualforceComponents(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.cmp-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.auraComponents.push(...XmlParser.getAuraComponents(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.js-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.lightningWebComponents.push(...XmlParser.getLightningWebComponents(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.permissionset-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.permissionSets.push(...XmlParser.getPermissionSets(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.permissionsetgroup-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.permissionSetGroups.push(...XmlParser.getPermissionSetGroups(xml, thisFile));
-      }
-
       if (thisFile.endsWith('.workflow-meta.xml')) {
         const xml = fs.readFileSync(thisFile, 'utf-8');
         this.workflowRules.push(...XmlParser.getWorkflowRules(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.object-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.objects.push(...XmlParser.getObjects(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.field-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.fields.push(...XmlParser.getFields(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.fieldSet-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.fieldSets.push(...XmlParser.getFieldSets(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.listView-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.listViews.push(...XmlParser.getListViews(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.recordType-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.recordTypes.push(...XmlParser.getRecordTypes(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.validationRule-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.validationRules.push(...XmlParser.getValidationRules(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.compactLayout-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.compactLayouts.push(...XmlParser.getCompactLayouts(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.webLink-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.webLinks.push(...XmlParser.getWebLinks(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.quickAction-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.quickActions.push(...XmlParser.getQuickActions(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.tab-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.tabs.push(...XmlParser.getTabs(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.layout-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.layouts.push(...XmlParser.getLayouts(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.flexipage-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.flexipages.push(...XmlParser.getFlexipages(xml, thisFile));
-      }
-
-      if (thisFile.endsWith('.flow-meta.xml')) {
-        const xml = fs.readFileSync(thisFile, 'utf-8');
-        this.flows.push(...XmlParser.getFlows(xml, thisFile));
       }
     }
   }
@@ -203,7 +67,7 @@ export class Atlas {
   public async writeXlsx(): Promise<string> {
     const workbook = new ExcelJS.default.Workbook();
 
-    if (this.objects.length > 0) {
+    if (this.album.objects.length > 0) {
       const objectWorksheet = workbook.addWorksheet('Objects');
       objectWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
@@ -226,7 +90,7 @@ export class Atlas {
         { header: 'Permission Set License Required', key: 'enableLicensing', width: 64 },
       ];
       objectWorksheet.getRow(1).font = { bold: true };
-      for (const thisObject of this.objects) {
+      for (const thisObject of this.album.objects as Array<Extended<Metadata.CustomObject>>) {
         objectWorksheet.addRow({
           name: thisObject.name,
           label: thisObject.label,
@@ -250,7 +114,7 @@ export class Atlas {
       }
     }
 
-    if (this.fields.length > 0) {
+    if (this.album.fields.length > 0) {
       const fieldWorksheet = workbook.addWorksheet('Fields');
       fieldWorksheet.columns = [
         { header: 'Object', key: 'objectName', width: 64 },
@@ -304,7 +168,7 @@ export class Atlas {
         { header: 'Business Status', key: 'businessStatus', width: 64 },
       ];
       fieldWorksheet.getRow(1).font = { bold: true };
-      for (const thisField of this.fields) {
+      for (const thisField of this.album.fields as Array<Extended<Metadata.CustomField>>) {
         fieldWorksheet.addRow({
           objectName: thisField.objectName,
           fullName: thisField.fullName,
@@ -359,7 +223,7 @@ export class Atlas {
       }
     }
 
-    if (this.fieldSets.length > 0) {
+    if (this.album.fieldSets.length > 0) {
       const fieldSetWorksheet = workbook.addWorksheet('Field Sets');
       fieldSetWorksheet.columns = [
         { header: 'Object', key: 'objectName', width: 64 },
@@ -370,7 +234,7 @@ export class Atlas {
         { header: 'Displayed Fields', key: 'displayedFields', width: 64 },
       ];
       fieldSetWorksheet.getRow(1).font = { bold: true };
-      for (const thisFieldSet of this.fieldSets) {
+      for (const thisFieldSet of this.album.fieldSets as Array<Extended<Metadata.FieldSet>>) {
         fieldSetWorksheet.addRow({
           objectName: thisFieldSet.objectName,
           fullName: thisFieldSet.fullName,
@@ -382,7 +246,7 @@ export class Atlas {
       }
     }
 
-    if (this.listViews.length > 0) {
+    if (this.album.listViews.length > 0) {
       const listViewWorksheet = workbook.addWorksheet('List Views');
       listViewWorksheet.columns = [
         { header: 'Object', key: 'objectName', width: 64 },
@@ -399,7 +263,7 @@ export class Atlas {
         { header: 'Language', key: 'language', width: 64 },
       ];
       listViewWorksheet.getRow(1).font = { bold: true };
-      for (const thisListView of this.listViews) {
+      for (const thisListView of this.album.listViews as Array<Extended<Metadata.ListView>>) {
         listViewWorksheet.addRow({
           objectName: thisListView.objectName,
           fullName: thisListView.fullName,
@@ -417,7 +281,7 @@ export class Atlas {
       }
     }
 
-    if (this.recordTypes.length > 0) {
+    if (this.album.recordTypes.length > 0) {
       const recordTypeWorksheet = workbook.addWorksheet('Record Types');
       recordTypeWorksheet.columns = [
         { header: 'Object', key: 'objectName', width: 64 },
@@ -430,7 +294,7 @@ export class Atlas {
         { header: 'Compact Layout Assignment', key: 'compactLayoutAssignment', width: 64 },
       ];
       recordTypeWorksheet.getRow(1).font = { bold: true };
-      for (const thisRecordType of this.recordTypes) {
+      for (const thisRecordType of this.album.recordTypes as Array<Extended<Metadata.RecordType>>) {
         recordTypeWorksheet.addRow({
           objectName: thisRecordType.objectName,
           fullName: thisRecordType.fullName,
@@ -444,7 +308,7 @@ export class Atlas {
       }
     }
 
-    if (this.validationRules.length > 0) {
+    if (this.album.validationRules.length > 0) {
       const validationRuleWorksheet = workbook.addWorksheet('Validation Rules');
       validationRuleWorksheet.columns = [
         { header: 'Object', key: 'objectName', width: 64 },
@@ -457,7 +321,7 @@ export class Atlas {
         { header: 'Error Message', key: 'errorMessage', width: 128 },
       ];
       validationRuleWorksheet.getRow(1).font = { bold: true };
-      for (const thisValidationRule of this.validationRules) {
+      for (const thisValidationRule of this.album.validationRules as Array<Extended<Metadata.ValidationRule>>) {
         validationRuleWorksheet.addRow({
           objectName: thisValidationRule.objectName,
           fullName: thisValidationRule.fullName,
@@ -471,7 +335,7 @@ export class Atlas {
       }
     }
 
-    if (this.compactLayouts.length > 0) {
+    if (this.album.compactLayouts.length > 0) {
       const compactLayoutWorksheet = workbook.addWorksheet('Compact Layouts');
       compactLayoutWorksheet.columns = [
         { header: 'Object', key: 'objectName', width: 64 },
@@ -481,7 +345,7 @@ export class Atlas {
         { header: 'Fields', key: 'fields', width: 64 },
       ];
       compactLayoutWorksheet.getRow(1).font = { bold: true };
-      for (const thisCompactLayout of this.compactLayouts) {
+      for (const thisCompactLayout of this.album.compactLayouts as Array<Extended<Metadata.CompactLayout>>) {
         compactLayoutWorksheet.addRow({
           objectName: thisCompactLayout.objectName,
           fullName: thisCompactLayout.fullName,
@@ -492,7 +356,7 @@ export class Atlas {
       }
     }
 
-    if (this.webLinks.length > 0) {
+    if (this.album.webLinks.length > 0) {
       const webLinkWorksheet = workbook.addWorksheet('Web Links');
       webLinkWorksheet.columns = [
         { header: 'Object', key: 'objectName', width: 64 },
@@ -521,7 +385,7 @@ export class Atlas {
         { header: 'Require Row Selection', key: 'requireRowSelection', width: 64 },
       ];
       webLinkWorksheet.getRow(1).font = { bold: true };
-      for (const thisWebLink of this.webLinks) {
+      for (const thisWebLink of this.album.webLinks as Array<Extended<Metadata.WebLink>>) {
         webLinkWorksheet.addRow({
           objectName: thisWebLink.objectName,
           fullName: thisWebLink.fullName,
@@ -551,14 +415,14 @@ export class Atlas {
       }
     }
 
-    if (this.apexClasses.length > 0) {
+    if (this.album.apexClasses.length > 0) {
       const apexClassWorksheet = workbook.addWorksheet('Apex Classes');
       apexClassWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
         { header: 'API Version', key: 'apiVersion', width: 16 },
       ];
       apexClassWorksheet.getRow(1).font = { bold: true };
-      for (const thisApexClass of this.apexClasses) {
+      for (const thisApexClass of this.album.apexClasses as Array<Extended<Metadata.ApexClass>>) {
         apexClassWorksheet.addRow({
           name: thisApexClass.name,
           apiVersion: thisApexClass.apiVersion,
@@ -566,14 +430,14 @@ export class Atlas {
       }
     }
 
-    if (this.apexTriggers.length > 0) {
+    if (this.album.apexTriggers.length > 0) {
       const apexTriggerWorksheet = workbook.addWorksheet('Apex Triggers');
       apexTriggerWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
         { header: 'API Version', key: 'apiVersion', width: 16 },
       ];
       apexTriggerWorksheet.getRow(1).font = { bold: true };
-      for (const thisApexTrigger of this.apexTriggers) {
+      for (const thisApexTrigger of this.album.apexTriggers as Array<Extended<Metadata.ApexTrigger>>) {
         apexTriggerWorksheet.addRow({
           name: thisApexTrigger.name,
           apiVersion: thisApexTrigger.apiVersion,
@@ -581,7 +445,7 @@ export class Atlas {
       }
     }
 
-    if (this.visualforcePages.length > 0) {
+    if (this.album.apexPages.length > 0) {
       const visualforcePageWorksheet = workbook.addWorksheet('Visualforce Pages');
       visualforcePageWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
@@ -590,7 +454,7 @@ export class Atlas {
         { header: 'API Version', key: 'apiVersion', width: 16 },
       ];
       visualforcePageWorksheet.getRow(1).font = { bold: true };
-      for (const thisVisualforcePage of this.visualforcePages) {
+      for (const thisVisualforcePage of this.album.apexPages as Array<Extended<Metadata.ApexPage>>) {
         visualforcePageWorksheet.addRow({
           name: thisVisualforcePage.name,
           label: thisVisualforcePage.label,
@@ -600,7 +464,7 @@ export class Atlas {
       }
     }
 
-    if (this.visualforceComoponents.length > 0) {
+    if (this.album.apexComponents.length > 0) {
       const visualforceComponentWorksheet = workbook.addWorksheet('Visualforce Components');
       visualforceComponentWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
@@ -609,7 +473,7 @@ export class Atlas {
         { header: 'API Version', key: 'apiVersion', width: 16 },
       ];
       visualforceComponentWorksheet.getRow(1).font = { bold: true };
-      for (const thisVisualforceComponent of this.visualforceComoponents) {
+      for (const thisVisualforceComponent of this.album.apexComponents as Array<Extended<Metadata.ApexComponent>>) {
         visualforceComponentWorksheet.addRow({
           name: thisVisualforceComponent.name,
           label: thisVisualforceComponent.label,
@@ -619,7 +483,7 @@ export class Atlas {
       }
     }
 
-    if (this.auraComponents.length > 0) {
+    if (this.album.auraComponents.length > 0) {
       const auraComponentWorksheet = workbook.addWorksheet('Aura Components');
       auraComponentWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
@@ -627,7 +491,7 @@ export class Atlas {
         { header: 'API Version', key: 'apiVersion', width: 16 },
       ];
       auraComponentWorksheet.getRow(1).font = { bold: true };
-      for (const thisAuraComponent of this.auraComponents) {
+      for (const thisAuraComponent of this.album.auraComponents as Array<Extended<Metadata.AuraDefinitionBundle>>) {
         auraComponentWorksheet.addRow({
           name: thisAuraComponent.name,
           description: thisAuraComponent.description,
@@ -636,7 +500,7 @@ export class Atlas {
       }
     }
 
-    if (this.lightningWebComponents.length > 0) {
+    if (this.album.lightningWebComponents.length > 0) {
       const lightningWebComponentWorksheet = workbook.addWorksheet('Lightning Web Components');
       lightningWebComponentWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
@@ -644,7 +508,9 @@ export class Atlas {
         { header: 'API Version', key: 'apiVersion', width: 16 },
       ];
       lightningWebComponentWorksheet.getRow(1).font = { bold: true };
-      for (const thisLightningWebComponent of this.lightningWebComponents) {
+      for (const thisLightningWebComponent of this.album.lightningWebComponents as Array<
+        Extended<Metadata.LightningComponentBundle>
+      >) {
         lightningWebComponentWorksheet.addRow({
           name: thisLightningWebComponent.name,
           description: thisLightningWebComponent.description,
@@ -653,7 +519,7 @@ export class Atlas {
       }
     }
 
-    if (this.permissionSets.length > 0) {
+    if (this.album.permissionSets.length > 0) {
       const permissionSetWorksheet = workbook.addWorksheet('Permission Sets');
       permissionSetWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
@@ -661,7 +527,7 @@ export class Atlas {
         { header: 'Description', key: 'description', width: 128 },
       ];
       permissionSetWorksheet.getRow(1).font = { bold: true };
-      for (const thisPermissionSet of this.permissionSets) {
+      for (const thisPermissionSet of this.album.permissionSets as Array<Extended<Metadata.PermissionSet>>) {
         permissionSetWorksheet.addRow({
           name: thisPermissionSet.name,
           label: thisPermissionSet.label,
@@ -670,7 +536,7 @@ export class Atlas {
       }
     }
 
-    if (this.permissionSetGroups.length > 0) {
+    if (this.album.permissionSetGroups.length > 0) {
       const permissionSetGroupWorksheet = workbook.addWorksheet('Permission Set Groups');
       permissionSetGroupWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
@@ -678,7 +544,9 @@ export class Atlas {
         { header: 'Description', key: 'description', width: 128 },
       ];
       permissionSetGroupWorksheet.getRow(1).font = { bold: true };
-      for (const thisPermissionSetGroup of this.permissionSetGroups) {
+      for (const thisPermissionSetGroup of this.album.permissionSetGroups as Array<
+        Extended<Metadata.PermissionSetGroup>
+      >) {
         permissionSetGroupWorksheet.addRow({
           name: thisPermissionSetGroup.name,
           label: thisPermissionSetGroup.label,
@@ -708,7 +576,7 @@ export class Atlas {
       }
     }
 
-    if (this.quickActions.length > 0) {
+    if (this.album.quickActions.length > 0) {
       const quickActionWorksheet = workbook.addWorksheet('Quick Actions');
       quickActionWorksheet.columns = [
         { header: 'Full Name', key: 'fullName', width: 64 },
@@ -725,7 +593,7 @@ export class Atlas {
         { header: 'Flow Definition', key: 'flowDefinition', width: 64 },
       ];
       quickActionWorksheet.getRow(1).font = { bold: true };
-      for (const thisQuickAction of this.quickActions) {
+      for (const thisQuickAction of this.album.quickActions as Array<Extended<Metadata.QuickAction>>) {
         quickActionWorksheet.addRow({
           name: thisQuickAction.name,
           objectName: thisQuickAction.objectName,
@@ -743,7 +611,7 @@ export class Atlas {
       }
     }
 
-    if (this.tabs.length > 0) {
+    if (this.album.tabs.length > 0) {
       const tabWorksheet = workbook.addWorksheet('Tabs');
       tabWorksheet.columns = [
         { header: 'Full Name', key: 'fullName', width: 64 },
@@ -762,7 +630,7 @@ export class Atlas {
         { header: 'URL Encoding Key', key: 'urlEncodingKey', width: 64 },
       ];
       tabWorksheet.getRow(1).font = { bold: true };
-      for (const thisTab of this.tabs) {
+      for (const thisTab of this.album.tabs as Array<Extended<Metadata.CustomTab>>) {
         tabWorksheet.addRow({
           name: thisTab.name,
           objectName: thisTab.objectName,
@@ -782,7 +650,7 @@ export class Atlas {
       }
     }
 
-    if (this.layouts.length > 0) {
+    if (this.album.layouts.length > 0) {
       const layoutWorksheet = workbook.addWorksheet('Layouts');
       layoutWorksheet.columns = [
         { header: 'Full Name', key: 'fullName', width: 64 },
@@ -790,7 +658,7 @@ export class Atlas {
         { header: 'Object', key: 'objectName', width: 64 },
       ];
       layoutWorksheet.getRow(1).font = { bold: true };
-      for (const thisLayout of this.layouts) {
+      for (const thisLayout of this.album.layouts as Array<Extended<Metadata.Layout>>) {
         layoutWorksheet.addRow({
           name: thisLayout.name,
           objectName: thisLayout.objectName,
@@ -799,7 +667,7 @@ export class Atlas {
       }
     }
 
-    if (this.flexipages.length > 0) {
+    if (this.album.flexipages.length > 0) {
       const flexipageWorksheet = workbook.addWorksheet('Flexipages');
       flexipageWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
@@ -810,7 +678,7 @@ export class Atlas {
         { header: 'Description', key: 'description', width: 128 },
       ];
       flexipageWorksheet.getRow(1).font = { bold: true };
-      for (const thisFlexipage of this.flexipages) {
+      for (const thisFlexipage of this.album.flexipages as Array<Extended<Metadata.FlexiPage>>) {
         flexipageWorksheet.addRow({
           name: thisFlexipage.name,
           masterLabel: thisFlexipage.masterLabel,
@@ -822,7 +690,7 @@ export class Atlas {
       }
     }
 
-    if (this.flows.length > 0) {
+    if (this.album.flows.length > 0) {
       const flowWorksheet = workbook.addWorksheet('Flows');
       flowWorksheet.columns = [
         { header: 'Name', key: 'name', width: 64 },
@@ -836,7 +704,7 @@ export class Atlas {
         { header: 'Record Trigger Type', key: 'recordTriggerType', width: 64 },
       ];
       flowWorksheet.getRow(1).font = { bold: true };
-      for (const thisFlow of this.flows) {
+      for (const thisFlow of this.album.flows as Array<Extended<Metadata.Flow>>) {
         flowWorksheet.addRow({
           name: thisFlow.name,
           label: thisFlow.label,
