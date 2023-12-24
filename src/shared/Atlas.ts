@@ -4,8 +4,8 @@ import { readdir, mkdir } from 'node:fs/promises';
 import { SfProject, NamedPackageDir } from '@salesforce/core';
 import * as ExcelJS from 'exceljs';
 import { Spinner } from '@salesforce/sf-plugins-core';
-import * as Metadata from '../types/metadata.js';
-import { Named, FullNamed, ObjectNamed } from '../types/metadata-addon.js';
+import * as Metadata from './metadata/types/metadata.js';
+import { Extended } from './metadata/file/index.js';
 import { XmlParser } from './XmlParser.js';
 
 // TO DO
@@ -17,38 +17,38 @@ import { XmlParser } from './XmlParser.js';
 export class Atlas {
   public projectPath: string;
 
-  public apexClasses: Array<Named<Metadata.ApexClass>> = [];
-  public apexTriggers: Array<Named<Metadata.ApexTrigger>> = [];
-  public visualforcePages: Array<Named<Metadata.ApexPage>> = [];
-  public visualforceComoponents: Array<Named<Metadata.ApexComponent>> = [];
-  public auraComponents: Array<Named<Metadata.AuraDefinitionBundle>> = [];
-  public lightningWebComponents: Array<Named<Metadata.LightningComponentBundle>> = [];
+  public apexClasses: Array<Extended<Metadata.ApexClass>> = [];
+  public apexTriggers: Array<Extended<Metadata.ApexTrigger>> = [];
+  public visualforcePages: Array<Extended<Metadata.ApexPage>> = [];
+  public visualforceComoponents: Array<Extended<Metadata.ApexComponent>> = [];
+  public auraComponents: Array<Extended<Metadata.AuraDefinitionBundle>> = [];
+  public lightningWebComponents: Array<Extended<Metadata.LightningComponentBundle>> = [];
 
-  public permissionSets: Array<Named<Metadata.PermissionSet>> = [];
-  public permissionSetGroups: Array<Named<Metadata.PermissionSetGroup>> = [];
+  public permissionSets: Array<Extended<Metadata.PermissionSet>> = [];
+  public permissionSetGroups: Array<Extended<Metadata.PermissionSetGroup>> = [];
 
-  public workflowRules: Array<ObjectNamed<FullNamed<Metadata.WorkflowRule>>> = [];
+  public workflowRules: Array<Extended<Metadata.WorkflowRule>> = [];
 
-  public objects: Array<Named<Metadata.CustomObject>> = [];
-  public fields: Array<ObjectNamed<FullNamed<Named<Metadata.CustomField>>>> = [];
-  public fieldSets: Array<ObjectNamed<FullNamed<Named<Metadata.FieldSet>>>> = [];
-  public listViews: Array<ObjectNamed<FullNamed<Named<Metadata.ListView>>>> = [];
-  public recordTypes: Array<ObjectNamed<FullNamed<Named<Metadata.RecordType>>>> = [];
-  public validationRules: Array<ObjectNamed<FullNamed<Named<Metadata.ValidationRule>>>> = [];
-  public compactLayouts: Array<ObjectNamed<FullNamed<Named<Metadata.CompactLayout>>>> = [];
-  public webLinks: Array<ObjectNamed<FullNamed<Named<Metadata.WebLink>>>> = [];
+  public objects: Array<Extended<Metadata.CustomObject>> = [];
+  public fields: Array<Extended<Metadata.CustomField>> = [];
+  public fieldSets: Array<Extended<Metadata.FieldSet>> = [];
+  public listViews: Array<Extended<Metadata.ListView>> = [];
+  public recordTypes: Array<Extended<Metadata.RecordType>> = [];
+  public validationRules: Array<Extended<Metadata.ValidationRule>> = [];
+  public compactLayouts: Array<Extended<Metadata.CompactLayout>> = [];
+  public webLinks: Array<Extended<Metadata.WebLink>> = [];
 
-  // public customLabels: Array<Named<Metadata.CustomLabel>> = [];
-  public quickActions: Array<ObjectNamed<FullNamed<Named<Metadata.QuickAction>>>> = [];
-  public tabs: Array<ObjectNamed<FullNamed<Named<Metadata.CustomTab>>>> = [];
-  public layouts: Array<ObjectNamed<FullNamed<Named<Metadata.Layout>>>> = [];
-  // public reports: Array<Named<Metadata.Report>> = [];
-  // public reportFolders: Array<Named<Metadata.ReportFolder>> = [];
-  // public dashboards: Array<Named<Metadata.Dashboard>> = [];
+  // public customLabels: Array<Extended<Metadata.CustomLabel>> = [];
+  public quickActions: Array<Extended<Metadata.QuickAction>> = [];
+  public tabs: Array<Extended<Metadata.CustomTab>> = [];
+  public layouts: Array<Extended<Metadata.Layout>> = [];
+  // public reports: Array<Extended<Metadata.Report>> = [];
+  // public reportFolders: Array<Extended<Metadata.ReportFolder>> = [];
+  // public dashboards: Array<Extended<Metadata.Dashboard>> = [];
 
-  public flexipages: Array<Named<Metadata.FlexiPage>> = [];
-  public flows: Array<Named<Metadata.Flow>> = [];
-  // public globalValueSets: Array<Named<Metadata.GlobalValueSet>> = [];
+  public flexipages: Array<Extended<Metadata.FlexiPage>> = [];
+  public flows: Array<Extended<Metadata.Flow>> = [];
+  // public globalValueSets: Array<Extended<Metadata.GlobalValueSet>> = [];
 
   public constructor(projectPath: string) {
     this.projectPath = projectPath;
