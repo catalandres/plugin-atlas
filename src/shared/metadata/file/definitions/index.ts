@@ -19,5 +19,4 @@ export * from './QuickAction.js';
 export * from './RecordType.js';
 export * from './ValidationRule.js';
 export * from './WebLink.js';
-// export * from './Workflow.js'
-// export * from './WorkflowRule.js';
+export * from './Workflow.js';

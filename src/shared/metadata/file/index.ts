@@ -26,6 +26,5 @@ export const ALL_DEFINITIONS = [
   Definition.RECORD_TYPE,
   Definition.VALIDATION_RULE,
   Definition.WEBLINK,
-  // Definition.WORKFLOW,
-  // Definition.WORKFLOW_RULE,
+  Definition.WORKFLOW,
 ];

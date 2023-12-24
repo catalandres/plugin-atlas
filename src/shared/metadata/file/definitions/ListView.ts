@@ -3,7 +3,7 @@ import {
   Definition,
   getBasenameWithoutExtension,
   getNameOfSecondToLastFolderLevel,
-  getFullNameForObjectComponent,
+  concatenateObjectNameAndName,
 } from '../index.js';
 
 export const LIST_VIEW: Definition = {
@@ -13,5 +13,5 @@ export const LIST_VIEW: Definition = {
   metadataType: {} as ListView,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
-  setFullName: getFullNameForObjectComponent,
+  setFullName: concatenateObjectNameAndName,
 };

@@ -3,7 +3,7 @@ import {
   Definition,
   getBasenameWithoutExtension,
   getNameOfSecondToLastFolderLevel,
-  getFullNameForObjectComponent,
+  concatenateObjectNameAndName,
 } from '../index.js';
 
 export const RECORD_TYPE: Definition = {
@@ -13,5 +13,5 @@ export const RECORD_TYPE: Definition = {
   metadataType: {} as RecordType,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
-  setFullName: getFullNameForObjectComponent,
+  setFullName: concatenateObjectNameAndName,
 };

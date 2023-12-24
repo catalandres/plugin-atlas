@@ -1,7 +1,8 @@
 import * as path from 'node:path';
-import { getExtension } from '../index.js';
+import { Extended, getExtension } from '../index.js';
+import { Metadata } from '../../types/metadata.js';
 
-export function getBasenameWithoutExtension(fullPath: string): string {
-  const extension = getExtension(fullPath);
-  return path.basename(fullPath).replace(extension, '');
+export function getBasenameWithoutExtension(record: Extended<Metadata>): string {
+  const extension = getExtension(record.fileName);
+  return path.basename(record.fileName).replace(extension, '');
 }

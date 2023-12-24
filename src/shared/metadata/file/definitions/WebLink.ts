@@ -3,7 +3,7 @@ import {
   Definition,
   getBasenameWithoutExtension,
   getNameOfSecondToLastFolderLevel,
-  getFullNameForObjectComponent,
+  concatenateObjectNameAndName,
 } from '../index.js';
 
 export const WEBLINK: Definition = {
@@ -13,5 +13,5 @@ export const WEBLINK: Definition = {
   metadataType: {} as WebLink,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
-  setFullName: getFullNameForObjectComponent,
+  setFullName: concatenateObjectNameAndName,
 };

@@ -3,7 +3,7 @@ import {
   Definition,
   getBasenameWithoutExtension,
   getNameOfSecondToLastFolderLevel,
-  getFullNameForObjectComponent,
+  concatenateObjectNameAndName,
 } from '../index.js';
 
 export const CUSTOM_FIELD: Definition = {
@@ -13,5 +13,5 @@ export const CUSTOM_FIELD: Definition = {
   metadataType: {} as CustomField,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
-  setFullName: getFullNameForObjectComponent,
+  setFullName: concatenateObjectNameAndName,
 };

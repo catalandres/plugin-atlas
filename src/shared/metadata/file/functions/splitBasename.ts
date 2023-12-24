@@ -1,21 +1,22 @@
-import { getBasenameWithoutExtension } from '../index.js';
+import { Metadata } from '../../types/metadata.js';
+import { Extended, getBasenameWithoutExtension } from '../index.js';
 
-export function getFirstHalfOfBasenameSplitByPeriod(fullPath: string): string {
-  const basename = getBasenameWithoutExtension(fullPath);
+export function getFirstHalfOfBasenameSplitByPeriod(record: Extended<Metadata>): string {
+  const basename = getBasenameWithoutExtension(record);
   return basename.split('.')[0];
 }
 
-export function getSecondHalfOfBasenameSplitByPeriod(fullPath: string): string {
-  const basename = getBasenameWithoutExtension(fullPath);
+export function getSecondHalfOfBasenameSplitByPeriod(record: Extended<Metadata>): string {
+  const basename = getBasenameWithoutExtension(record);
   return basename.split('.')[1];
 }
 
-export function getFirstHalfOfBasenameSplitByDash(fullPath: string): string {
-  const basename = getBasenameWithoutExtension(fullPath);
+export function getFirstHalfOfBasenameSplitByDash(record: Extended<Metadata>): string {
+  const basename = getBasenameWithoutExtension(record);
   return basename.split('-')[0];
 }
 
-export function getSecondHalfOfBasenameSplitByDash(fullPath: string): string {
-  const basename = getBasenameWithoutExtension(fullPath);
+export function getSecondHalfOfBasenameSplitByDash(record: Extended<Metadata>): string {
+  const basename = getBasenameWithoutExtension(record);
   return basename.split('-')[1];
 }
