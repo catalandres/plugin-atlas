@@ -4,6 +4,7 @@ import { mkdir } from 'node:fs/promises';
 import * as ExcelJS from 'exceljs';
 import { Extended, Album } from '../metadata/file/index.js';
 import * as Metadata from '../metadata/types/metadata.js';
+import { ALL_TABLES } from './index.js';
 
 export class ExcelWriter {
   private album: Album;
@@ -18,159 +19,20 @@ export class ExcelWriter {
   public async writeXlsx(): Promise<string> {
     const workbook = new ExcelJS.default.Workbook();
 
-    if (this.album.objects?.length > 0) {
-      const objectWorksheet = workbook.addWorksheet('Objects');
-      objectWorksheet.columns = [
-        { header: 'Name', key: 'name', width: 64 },
-        { header: 'Label', key: 'label', width: 64 },
-        { header: 'Label (Plural)', key: 'pluralLabel', width: 64 },
-        { header: 'Gender', key: 'gender', width: 64 },
-        { header: 'Starts With', key: 'startsWith', width: 64 },
-        { header: 'Description', key: 'description', width: 128 },
-        { header: 'Default Internal Access', key: 'sharingModel', width: 64 },
-        { header: 'Default External Access', key: 'externalSharingModel', width: 64 },
-        { header: 'Deployment Status', key: 'deploymentStatus', width: 64 },
-        { header: 'Activities Enabled', key: 'enableActivities', width: 64 },
-        { header: 'Chatter Enabled', key: 'allowInChatterGroups', width: 64 },
-        { header: 'Feeds Enabled', key: 'enableFeeds', width: 64 },
-        { header: 'History Tracking Enabled', key: 'enableHistory', width: 64 },
-        { header: 'Reports Enabled', key: 'enableReports', width: 64 },
-        { header: 'Search Enabled', key: 'enableSearch', width: 64 },
-        { header: 'Platform Event Type', key: 'eventType', width: 64 },
-        { header: 'Platform Event Publish Behavior', key: 'publishBehavior', width: 64 },
-        { header: 'Permission Set License Required', key: 'enableLicensing', width: 64 },
-      ];
-      objectWorksheet.getRow(1).font = { bold: true };
-      for (const thisObject of this.album.objects as Array<Extended<Metadata.CustomObject>>) {
-        objectWorksheet.addRow({
-          name: thisObject.name,
-          label: thisObject.label,
-          pluralLabel: thisObject.pluralLabel,
-          gender: thisObject.gender,
-          startsWith: thisObject.startsWith,
-          description: thisObject.description,
-          sharingModel: thisObject.sharingModel,
-          externalSharingModel: thisObject.externalSharingModel,
-          deploymentStatus: thisObject.deploymentStatus,
-          enableActivities: thisObject.enableActivities,
-          allowInChatterGroups: thisObject.allowInChatterGroups,
-          enableFeeds: thisObject.enableFeeds,
-          enableHistory: thisObject.enableHistory,
-          enableReports: thisObject.enableReports,
-          enableSearch: thisObject.enableSearch,
-          eventType: thisObject.eventType,
-          publishBehavior: thisObject.publishBehavior,
-          enableLicensing: thisObject.enableLicensing,
-        });
-      }
-    }
-
-    if (this.album.fields?.length > 0) {
-      const fieldWorksheet = workbook.addWorksheet('Fields');
-      fieldWorksheet.columns = [
-        { header: 'Object', key: 'objectName', width: 64 },
-        { header: 'Name', key: 'name', width: 64 },
-        { header: 'Full Name', key: 'fullName', width: 64 },
-        { header: 'Label', key: 'label', width: 64 },
-        { header: 'Type', key: 'type', width: 64 },
-        { header: 'Required', key: 'required', width: 64 },
-        { header: 'Unique', key: 'unique', width: 64 },
-        { header: 'External ID', key: 'externalId', width: 64 },
-        { header: 'AI Prediction Field', key: 'isAIPredictionField', width: 64 },
-        { header: 'Case Sensitive', key: 'caseSensitive', width: 64 },
-
-        { header: 'Encryption Scheme (Shield)', key: 'encryptionScheme', width: 64 },
-        { header: 'Masking Type (Classic)', key: 'maskType', width: 64 },
-        { header: 'Masking Character (Classic)', key: 'maskChar', width: 64 },
-
-        { header: 'Description', key: 'description', width: 128 },
-        { header: 'Help Text', key: 'inlineHelpText', width: 128 },
-
-        { header: 'Default Value', key: 'defaultValue', width: 64 },
-        { header: 'Length', key: 'length', width: 64 },
-        { header: 'Visible Lines', key: 'visibleLines', width: 64 },
-        { header: 'Precision', key: 'precision', width: 64 },
-        { header: 'Scale', key: 'scale', width: 64 },
-        { header: 'Value Set', key: 'valueSet', width: 64 },
-        { header: 'Formula', key: 'formula', width: 64 },
-        { header: 'Treat Formula Blanks As', key: 'formulaTreatBlanksAs', width: 64 },
-
-        { header: 'Reference To', key: 'referenceTo', width: 64 },
-        { header: 'Relationship Name', key: 'relationshipName', width: 64 },
-        { header: 'Relationship Label', key: 'relationshipLabel', width: 64 },
-        { header: 'Relationship Order', key: 'relationshipOrder', width: 64 },
-        { header: 'Lookup Filter', key: 'lookupFilter', width: 64 },
-        { header: 'Delete Constraint', key: 'deleteConstraint', width: 64 },
-        { header: 'Reparentable Master Detail', key: 'reparentableMasterDetail', width: 64 },
-        { header: 'Write Requires Master Read', key: 'writeRequiresMasterRead', width: 64 },
-
-        { header: 'Summary Operation', key: 'summaryOperation', width: 64 },
-        { header: 'Summarized Field', key: 'summarizedField', width: 64 },
-        { header: 'Summary Filter Items', key: 'summaryFilterItems', width: 64 },
-
-        { header: 'Track Feed History', key: 'trackFeedHistory', width: 64 },
-        { header: 'Track History', key: 'trackHistory', width: 64 },
-        { header: 'Track Trending', key: 'trackTrending', width: 64 },
-
-        { header: 'Security Classification', key: 'securityClassification', width: 64 },
-        { header: 'Compliance Group', key: 'complianceGroup', width: 64 },
-        { header: 'Business Owner Group', key: 'businessOwnerGroup', width: 64 },
-        { header: 'Business Owner User', key: 'businessOwnerUser', width: 64 },
-        { header: 'Business Status', key: 'businessStatus', width: 64 },
-      ];
-      fieldWorksheet.getRow(1).font = { bold: true };
-      for (const thisField of this.album.fields as Array<Extended<Metadata.CustomField>>) {
-        fieldWorksheet.addRow({
-          objectName: thisField.objectName,
-          fullName: thisField.fullName,
-          name: thisField.name,
-          label: thisField.label,
-          type: thisField.type,
-          required: thisField.required,
-          unique: thisField.unique,
-          externalId: thisField.externalId,
-          isAIPredictionField: thisField.isAIPredictionField,
-          caseSensitive: thisField.caseSensitive,
-
-          encryptionScheme: thisField.encryptionScheme,
-          maskType: thisField.maskType,
-          maskChar: thisField.maskChar,
-
-          description: thisField.description,
-          inlineHelpText: thisField.inlineHelpText,
-
-          defaultValue: thisField.defaultValue,
-          length: thisField.length,
-          visibleLines: thisField.visibleLines,
-          precision: thisField.precision,
-          scale: thisField.scale,
-          valueSet: thisField.valueSet,
-          formula: thisField.formula,
-          formulaTreatBlanksAs: thisField.formulaTreatBlanksAs,
-
-          referenceTo: thisField.referenceTo,
-          relationshipName: thisField.relationshipName,
-          relationshipLabel: thisField.relationshipLabel,
-          relationshipOrder: thisField.relationshipOrder,
-          lookupFilter: thisField.lookupFilter,
-          deleteConstraint: thisField.deleteConstraint,
-          reparentableMasterDetail: thisField.reparentableMasterDetail,
-          writeRequiresMasterRead: thisField.writeRequiresMasterRead,
-
-          summaryOperation: thisField.summaryOperation,
-          summarizedField: thisField.summarizedField,
-          summaryFilterItems: thisField.summaryFilterItems,
-
-          trackFeedHistory: thisField.trackFeedHistory,
-          trackHistory: thisField.trackHistory,
-          trackTrending: thisField.trackTrending,
-
-          securityClassification: thisField.securityClassification,
-          complianceGroup: thisField.complianceGroup,
-          businessOwnerGroup: thisField.businessOwnerGroup,
-          businessOwnerUser: thisField.businessOwnerUser,
-          businessStatus: thisField.businessStatus,
-        });
+    for (const thisTable of ALL_TABLES) {
+      if (this.album[thisTable.list]?.length > 0) {
+        const worksheet = workbook.addWorksheet(thisTable.name);
+        worksheet.columns = thisTable.columns.map((column) => ({ header: column.label, key: column.field, width: 64 }));
+        worksheet.getRow(1).font = { bold: true };
+        for (const thisRecord of this.album[thisTable.list] as Array<
+          Extended<typeof thisTable.definition.metadataType>
+        >) {
+          const row: Record<string, unknown> = {};
+          for (const thisColumn of thisTable.columns) {
+            row[thisColumn.field] = thisRecord[thisColumn.field];
+          }
+          worksheet.addRow(row);
+        }
       }
     }
 
