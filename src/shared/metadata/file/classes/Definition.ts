@@ -10,7 +10,7 @@ export interface Definition {
   readonly setName?: (record: Extended<Metadata>) => string;
   readonly setObjectname?: (record: Extended<Metadata>) => string;
   readonly setFullName?: (record: Extended<Metadata>) => string;
-  readonly transform?: (record: Extended<Metadata>) => void;
+  readonly transform?: (record: Record<string, unknown>) => void;
   readonly process?: Array<(record: Extended<Metadata>) => Array<Extended<Metadata>>>;
   readonly children?: Record<string, Definition>;
 }

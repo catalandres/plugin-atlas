@@ -3,7 +3,6 @@ import { CUSTOM_FIELD } from '../../metadata/file/index.js';
 
 export const FIELDS: Table = {
   name: 'Fields',
-  list: 'fields',
   definition: CUSTOM_FIELD,
   columns: [
     { label: 'Object', field: 'objectName' },

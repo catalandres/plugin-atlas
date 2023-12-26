@@ -5,3 +5,4 @@ export * from './getFullNameValue.js';
 export * from './getNameOfSecondToLastFolderLevel.js';
 export * from './splitBasename.js';
 export * from './transformCustomTab.js';
+export * from './transformFlow.js';

@@ -7,7 +7,6 @@ interface TableColumn {
 
 export interface Table {
   readonly name: string;
-  readonly list: string;
   readonly definition: Definition;
   readonly columns: TableColumn[];
 }

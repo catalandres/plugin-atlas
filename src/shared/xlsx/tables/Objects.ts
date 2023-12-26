@@ -3,7 +3,6 @@ import { CUSTOM_OBJECT } from '../../metadata/file/index.js';
 
 export const OBJECTS: Table = {
   name: 'Objects',
-  list: 'objects',
   definition: CUSTOM_OBJECT,
   columns: [
     { label: 'Name', field: 'name' },

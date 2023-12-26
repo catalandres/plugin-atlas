@@ -27,4 +27,5 @@ export const ALL_DEFINITIONS = [
   Definition.VALIDATION_RULE,
   Definition.WEBLINK,
   Definition.WORKFLOW,
+  Definition.WORKFLOW_RULE,
 ];
