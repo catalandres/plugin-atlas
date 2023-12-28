@@ -7,6 +7,7 @@ import { ExcelWriter } from '../../../shared/xlsx/ExcelWriter.js';
 
 import { Atlas } from '../../../shared/metadata/Atlas.js';
 
+// eslint-disable-next-line sf-plugin/esm-message-import
 Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
 const messages = Messages.loadMessages('plugin-atlas', 'doc.generate.atlas');
 
