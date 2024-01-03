@@ -6,3 +6,4 @@ export * from './getNameOfSecondToLastFolderLevel.js';
 export * from './splitBasename.js';
 export * from './transformCustomTab.js';
 export * from './transformFlow.js';
+export * from './transformRole.js';

@@ -7,5 +7,6 @@ export const USER_ACCESS_POLICIES: Table = {
   columns: [
     { label: 'Name', field: 'name' },
     { label: 'Label', field: 'masterLabel' },
+    { label: 'Status', field: 'status' },
   ],
 };
