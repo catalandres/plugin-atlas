@@ -111,35 +111,28 @@ sf plugins
 
 <!-- commands -->
 
-- [`sf hello world`](#sf-hello-world)
+- [`sf doc generate atlas`](#sf-doc-generate-atlas)
 
-## `sf hello world`
+## `sf doc generate atlas`
 
-Say hello either to the world or someone you know.
+Generate documentation from the contents of your local project.
 
-```bash
+```
 USAGE
-  $ sf hello world [--json] [-n <value>]
-
-FLAGS
-  -n, --name=<value>  [default: World] The name of the person you'd like to say hello to.
+  $ sf doc generate atlas [--json]
 
 GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
-  Say hello either to the world or someone you know.
+  Generate documentation from the contents of your local project.
 
-  Say hello either to the world or someone you know.
+  You must run this command from within a project.
+  Note that the default behavior is to create an XLSX spreadsheet with a sheet for each supported metadata type. This
+  will change in an upcoming release.
 
 EXAMPLES
-  Say hello to the world:
-
-    $ sf hello world
-
-  Say hello to someone you know:
-
-    $ sf hello world --name Astro
+  $ sf doc generate atlas
 ```
 
 <!-- commandsstop -->
