@@ -5,7 +5,7 @@ import * as ExcelJS from 'exceljs';
 import { Extended, Album } from '../metadata/file/index.js';
 import { ALL_TABLES } from './index.js';
 
-export class ExcelWriter {
+export class XlsxWriter {
   private album: Album;
   private projectPath: string;
 

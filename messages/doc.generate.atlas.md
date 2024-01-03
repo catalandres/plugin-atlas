@@ -1,18 +1,11 @@
 # summary
 
-Summary of a command.
+Generate documentation from the contents of your local project.
 
 # description
 
-More information about a command. Don't repeat the summary.
-
-# flags.name.summary
-
-Description of a flag.
-
-# flags.name.description
-
-More information about a flag. Don't repeat the summary.
+You must run this command from within a project.
+Note that the default behavior is to create an XLSX spreadsheet with a sheet for each supported metadata type. This will change in an upcoming release.
 
 # examples
 

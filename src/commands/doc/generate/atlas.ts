@@ -3,7 +3,7 @@ import { readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { SfCommand } from '@salesforce/sf-plugins-core';
 import { SfProject, Messages, NamedPackageDir } from '@salesforce/core';
-import { ExcelWriter } from '../../../shared/xlsx/ExcelWriter.js';
+import { XlsxWriter } from '../../../shared/xlsx/XlsxWriter.js';
 
 import { Atlas } from '../../../shared/metadata/Atlas.js';
 
@@ -36,8 +36,11 @@ export default class DocGenerateAtlas extends SfCommand<DocGenerateAtlasResult> 
     const projectPath = SfProject.getInstance().getPath();
     const allProjectFiles = await getAllProjectFiles(projectPath);
     const atlas = new Atlas(allProjectFiles);
-    const xlWriter = new ExcelWriter(atlas.album, projectPath);
-    const xlsxFilename = await xlWriter.writeXlsx();
+    const xlsxWriter = new XlsxWriter(atlas.album, projectPath);
+    const xlsxFilename = await xlsxWriter.writeXlsx();
+
+    // TODO - move this text to the messages file
+    this.info('Output written to ' + xlsxFilename);
 
     return {
       path: xlsxFilename,
