@@ -3,8 +3,7 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'weekly'
-      day: 'saturday'
+      interval: 'daily'
     versioning-strategy: 'increase'
     labels:
       - 'dependencies'
@@ -20,3 +19,7 @@ updates:
       - dependency-name: '@salesforce/dev-scripts'
       - dependency-name: '*'
         update-types: ['version-update:semver-major']
+    groups:
+      npm:
+        patterns:
+          - "*"
