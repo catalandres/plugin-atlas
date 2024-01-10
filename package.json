@@ -1,7 +1,7 @@
 {
   "name": "plugin-atlas",
   "description": "A one-stop shop documentation toolkit for your Salesforce project.",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "dependencies": {
     "@oclif/core": "^3.16.0",
     "@salesforce/core": "^6.4.4",
