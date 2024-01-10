@@ -1,18 +1,48 @@
 /* eslint-disable complexity */
 import * as path from 'node:path';
-import { mkdir } from 'node:fs/promises';
 import * as ExcelJS from 'exceljs';
 import { Extended, Album } from '../../metadataReader/metadataTypes.js';
-import { Writer } from '../writer.js';
+import { Writer, WriterType } from '../writer.js';
 import { ALL_TABLES } from './allTables.js';
 
 export class TableWriter extends Writer {
-  public constructor(album: Album) {
-    super(album);
+  private workbook: ExcelJS.Workbook = new ExcelJS.default.Workbook();
+
+  public constructor(album: Album, type: WriterType) {
+    super(album, type);
   }
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  public async writeXlsx(fileName: string): Promise<void> {
+  public async write(targetPath: string): Promise<void> {
+    this.workbook = this.compileWorkbook();
+
+    switch (this.type) {
+      case WriterType.XLSX:
+        await this.writeXlsx(targetPath);
+        break;
+      case WriterType.CSV:
+        await this.writeCsv(targetPath);
+        break;
+      default:
+        throw new Error('Unsupported writer type: ' + (this.type as string));
+    }
+  }
+
+  private async writeXlsx(fileName: string): Promise<void> {
+    await this.workbook.xlsx.writeFile(fileName);
+  }
+
+  private async writeCsv(folderName: string): Promise<void> {
+    const results: Array<Promise<void>> = [];
+    for (const thisSheet of this.workbook.worksheets) {
+      const sheetName = thisSheet.name;
+      const sheetPath = path.join(folderName, sheetName + '.csv');
+      results.push(this.workbook.csv.writeFile(sheetPath, { sheetName }));
+    }
+    await Promise.all(results);
+  }
+
+  private compileWorkbook(): ExcelJS.Workbook {
     const workbook = new ExcelJS.default.Workbook();
 
     for (const thisTable of ALL_TABLES) {
@@ -32,11 +62,6 @@ export class TableWriter extends Writer {
       }
     }
 
-    const targetFolder = path.dirname(fileName);
-    if (targetFolder) {
-      await mkdir(targetFolder, { recursive: true });
-    }
-
-    await workbook.xlsx.writeFile(fileName);
+    return workbook;
   }
 }

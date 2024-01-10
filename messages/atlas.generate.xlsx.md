@@ -1,11 +1,10 @@
 # summary
 
-Generate documentation from the contents of your local project.
+Generate an XLSX spreadsheet from the contents of your local project, with a sheet for each supported metadata type.
 
 # description
 
 You must run this command from within a project.
-Note that the default behavior is to create an XLSX spreadsheet with a sheet for each supported metadata type. This will change in an upcoming release.
 
 # examples
 

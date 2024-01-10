@@ -1,38 +1,38 @@
 import { Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import { generateDefaultXlsxFilename } from '../../../util.js';
 import { AtlasCommand } from '../../../atlasCommand.js';
+import { generateDefaultCsvDirname } from '../../../util.js';
 import { WriterType } from '../../../writer/writer.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
-const messages = Messages.loadMessages('plugin-atlas', 'atlas.generate.xlsx');
+const messages = Messages.loadMessages('plugin-atlas', 'atlas.generate.csv');
 
-export type AtlasGenerateXlsxResult = {
+export type AtlasGenerateCsvResult = {
   path: string;
 };
 
-export default class AtlasGenerateXlsx extends AtlasCommand<AtlasGenerateXlsxResult> {
+export default class AtlasGenerateCsv extends AtlasCommand<AtlasGenerateCsvResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
 
   public static readonly flags = {
-    'output-file': Flags.file({
-      summary: messages.getMessage('flags.output-file.summary'),
-      description: messages.getMessage('flags.output-file.description'),
-      default: generateDefaultXlsxFilename(),
-      aliases: ['file'],
-      char: 'f',
+    'output-dir': Flags.directory({
+      summary: messages.getMessage('flags.output-dir.summary'),
+      description: messages.getMessage('flags.output-dir.description'),
+      default: generateDefaultCsvDirname(),
+      aliases: ['dir'],
+      char: 'd',
     }),
   };
 
-  protected writerType = WriterType.XLSX;
+  protected writerType = WriterType.CSV;
 
-  public async run(): Promise<AtlasGenerateXlsxResult> {
-    const { flags } = await this.parse(AtlasGenerateXlsx);
+  public async run(): Promise<AtlasGenerateCsvResult> {
+    const { flags } = await this.parse(AtlasGenerateCsv);
 
-    this.targetPath = flags['output-file'];
-    this.pathTransform = generateDefaultXlsxFilename;
+    this.targetPath = flags['output-dir'];
+    this.pathTransform = generateDefaultCsvDirname;
 
     await this.initialize();
     await this.tableWriter.write(this.targetPath);

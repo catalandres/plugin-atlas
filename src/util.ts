@@ -43,6 +43,18 @@ export function generateDefaultXlsxFilename(projectPath: string | undefined = un
   return [projectPath, 'atlas', 'xlsx', 'atlas-' + isoDateString + '.xlsx'].join(path.sep);
 }
 
+export function generateDefaultCsvDirname(projectPath: string | undefined = undefined): string {
+  let isoDateString: string = 'YYYYMMDD-HHMMSS';
+
+  if (projectPath === undefined) {
+    projectPath = 'PROJECT_FOLDER';
+  } else {
+    isoDateString = getNowIsoString();
+  }
+
+  return [projectPath, 'atlas', 'csv', isoDateString, ''].join(path.sep);
+}
+
 function getNowIsoString(): string {
   return new Date().toISOString().split('.')[0].replaceAll('-', '').replaceAll(':', '').replace('T', '-');
 }
