@@ -2,6 +2,14 @@
 
 [![NPM](https://img.shields.io/npm/v/plugin-atlas.svg?label=plugin-atlas)](https://www.npmjs.com/package/plugin-atlas) [![Downloads/week](https://img.shields.io/npm/dw/plugin-atlas.svg)](https://npmjs.org/package/plugin-atlas) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-documentation/main/LICENSE.txt)
 
+# Table of contents
+
+<!-- toc -->
+
+# Usage
+
+<!-- usage -->
+
 ## Vision
 
 Atlas is a one-stop shop documentation toolkit for your Salesforce project. It uses all the information stored in your Salesforce metadata files and outputs all that information in a structured, user-readable form, in multiple formats.
