@@ -954,10 +954,10 @@
     strip-ansi "6.0.1"
     ts-retry-promise "^0.7.1"
 
-"@salesforce/core@^6.4.1", "@salesforce/core@^6.4.4":
-  version "6.4.4"
-  resolved "https://registry.npmjs.org/@salesforce/core/-/core-6.4.4.tgz"
-  integrity sha512-VegX3ChnJUOOztSP05QPiXCTOSioShB22NyhYjL7vVhf6yqSOH0VT2oQ3ywrMYbYCbjLSdsmFdTVLiQIFpK57g==
+"@salesforce/core@^6.4.1", "@salesforce/core@^6.4.4", "@salesforce/core@^6.4.6":
+  version "6.4.6"
+  resolved "https://registry.yarnpkg.com/@salesforce/core/-/core-6.4.6.tgz#f3a8992326c54a341c78cf2abccd8f7dd10ff9ec"
+  integrity sha512-QMyzLgjZ47rsRuCG4akftdVsxlB8wvF8ITj+RXNLkjIdu+y5tRTn13N9I5TD9TIwotweVBJMcgx6qiwhInFrnw==
   dependencies:
     "@salesforce/kit" "^3.0.15"
     "@salesforce/schemas" "^1.6.1"
