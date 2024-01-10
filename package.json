@@ -1,6 +1,6 @@
 {
   "name": "plugin-atlas",
-  "description": "A one-stop shop documentation toolkit for your Salesforce project.",
+  "description": "A Salesforce CLI plugin to generate documentation from metadata",
   "version": "0.3.0",
   "dependencies": {
     "@oclif/core": "^3.16.0",
