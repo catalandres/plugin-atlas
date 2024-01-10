@@ -2,6 +2,8 @@
 
 [![NPM](https://img.shields.io/npm/v/plugin-atlas.svg?label=plugin-atlas)](https://www.npmjs.com/package/plugin-atlas) [![Downloads/week](https://img.shields.io/npm/dw/plugin-atlas.svg)](https://npmjs.org/package/plugin-atlas) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-documentation/main/LICENSE.txt)
 
+<!-- tocstop -->
+
 ## Vision
 
 Atlas is a one-stop shop documentation toolkit for your Salesforce project. It uses all the information stored in your Salesforce metadata files and outputs all that information in a structured, user-readable form, in multiple formats.
@@ -98,28 +100,65 @@ Currently supported metadata types:
 
 <!-- commands -->
 
-- [`sf doc generate atlas`](#sf-doc-generate-atlas)
+- [`sf atlas generate csv`](#sf-atlas-generate-csv)
+- [`sf atlas generate xlsx`](#sf-atlas-generate-xlsx)
 
-## `sf doc generate atlas`
+## `sf atlas generate csv`
 
-Generate documentation from the contents of your local project.
+Generate CSV files from the contents of your local project, with a separate file for each supported metadata type.
 
 ```
 USAGE
-  $ sf doc generate atlas [--json]
+  $ sf atlas generate csv [--json] [-d <value>]
+
+FLAGS
+  -d, --output-dir=<value>  [default: PROJECT_FOLDER/atlas/csv/YYYYMMDD-HHMMSS/] Folder where the CSV files will be
+                            saved.
 
 GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
-  Generate documentation from the contents of your local project.
+  Generate CSV files from the contents of your local project, with a separate file for each supported metadata type.
 
   You must run this command from within a project.
-  Note that the default behavior is to create an XLSX spreadsheet with a sheet for each supported metadata type. This
-  will change in an upcoming release.
 
 EXAMPLES
-  $ sf doc generate atlas
+  $ sf atlas generate csv
+
+FLAG DESCRIPTIONS
+  -d, --output-dir=<value>  Folder where the CSV files will be saved.
+
+    More information about a flag. Don't repeat the summary.
+```
+
+## `sf atlas generate xlsx`
+
+Generate an XLSX spreadsheet from the contents of your local project, with a sheet for each supported metadata type.
+
+```
+USAGE
+  $ sf atlas generate xlsx [--json] [-f <value>]
+
+FLAGS
+  -f, --output-file=<value>  [default: PROJECT_FOLDER/atlas/xlsx/atlas-YYYYMMDD-HHMMSS.xlsx] Name and path of the XLSX
+                             file to be generated.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Generate an XLSX spreadsheet from the contents of your local project, with a sheet for each supported metadata type.
+
+  You must run this command from within a project.
+
+EXAMPLES
+  $ sf atlas generate xlsx
+
+FLAG DESCRIPTIONS
+  -f, --output-file=<value>  Name and path of the XLSX file to be generated.
+
+    More information about a flag. Don't repeat the summary.
 ```
 
 <!-- commandsstop -->
