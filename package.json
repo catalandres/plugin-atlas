@@ -1,27 +1,25 @@
 {
-  "name": "plugin-documentation",
-  "description": "A Salesforce CLI plugin to generate documentation for projects",
-  "version": "1.0.0",
+  "name": "plugin-atlas",
+  "description": "A Salesforce CLI plugin to generate documentation from metadata",
+  "version": "0.3.1",
   "dependencies": {
-    "@oclif/core": "^3.11.0",
-    "@salesforce/core": "^6",
+    "@oclif/core": "^3.18.1",
+    "@salesforce/core": "^6.4.7",
     "@salesforce/sf-plugins-core": "^5.0.5",
-    "@types/shelljs": "^0.8.15",
-    "@types/xml2js": "^0.4.14",
     "exceljs": "^4.4.0",
-    "shelljs": "^0.8.5",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
-    "@oclif/plugin-command-snapshot": "^5.0.2",
-    "@salesforce/cli-plugins-testkit": "^5.0.4",
+    "@oclif/plugin-command-snapshot": "^5.0.6",
+    "@salesforce/cli-plugins-testkit": "^5.1.4",
     "@salesforce/dev-scripts": "^7.1.1",
-    "@types/exceljs": "^1.3.0",
-    "eslint-plugin-sf-plugin": "^1.16.15",
-    "oclif": "^4.0.4",
+    "@types/cli-progress": "^3.11.5",
+    "@types/xml2js": "^0.4.14",
+    "eslint-plugin-sf-plugin": "^1.17.1",
+    "oclif": "^4.3.1",
     "shx": "0.3.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -50,11 +48,11 @@
       "@oclif/plugin-help"
     ],
     "topics": {
-      "doc": {
-        "description": "description for doc",
+      "atlas": {
+        "description": "description for atlas",
         "subtopics": {
           "generate": {
-            "description": "description for doc.generate"
+            "description": "description for atlas.generate"
           }
         }
       }

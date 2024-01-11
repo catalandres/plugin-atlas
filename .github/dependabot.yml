@@ -4,13 +4,15 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
-      day: 'saturday'
+      day: 'friday'
+    target-branch: 'dev'
     versioning-strategy: 'increase'
     labels:
       - 'dependencies'
-    open-pull-requests-limit: 5
+      - 'npm'
+    open-pull-requests-limit: 10
     pull-request-branch-name:
-      separator: '-'
+      separator: '/'
     commit-message:
       # cause a release for non-dev-deps
       prefix: fix(deps)
@@ -20,3 +22,7 @@ updates:
       - dependency-name: '@salesforce/dev-scripts'
       - dependency-name: '*'
         update-types: ['version-update:semver-major']
+    groups:
+      npm-dependencies:
+        patterns:
+          - '*'
