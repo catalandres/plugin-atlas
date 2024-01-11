@@ -3,13 +3,16 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'friday'
+    target-branch: 'dev'
     versioning-strategy: 'increase'
     labels:
       - 'dependencies'
-    open-pull-requests-limit: 5
+      - 'npm'
+    open-pull-requests-limit: 10
     pull-request-branch-name:
-      separator: '-'
+      separator: '/'
     commit-message:
       # cause a release for non-dev-deps
       prefix: fix(deps)
@@ -20,6 +23,6 @@ updates:
       - dependency-name: '*'
         update-types: ['version-update:semver-major']
     groups:
-      npm:
+      npm-dependencies:
         patterns:
-          - "*"
+          - '*'
