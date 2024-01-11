@@ -1,145 +1,164 @@
-# plugin-documentation
+# Atlas
 
-[![NPM](https://img.shields.io/npm/v/plugin-documentation.svg?label=plugin-documentation)](https://www.npmjs.com/package/plugin-documentation) [![Downloads/week](https://img.shields.io/npm/dw/plugin-documentation.svg)](https://npmjs.org/package/plugin-documentation) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-documentation/main/LICENSE.txt)
+[![NPM](https://img.shields.io/npm/v/plugin-atlas.svg?label=plugin-atlas)](https://www.npmjs.com/package/plugin-atlas) [![Downloads/week](https://img.shields.io/npm/dw/plugin-atlas.svg)](https://npmjs.org/package/plugin-atlas) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-documentation/main/LICENSE.txt)
 
-## Using the template
+<!-- tocstop -->
 
-This repository provides a template for creating a plugin for the Salesforce CLI. To convert this template to a working plugin:
+## Vision
 
-1. Please get in touch with the Platform CLI team. We want to help you develop your plugin.
-2. Generate your plugin:
+Atlas is a one-stop shop documentation toolkit for your Salesforce project. It uses all the information stored in your Salesforce metadata files and outputs all that information in a structured, user-readable form, in multiple formats.
 
+## How to install
+
+1. [Install Node in your system.](https://nodejs.org/en) In case of doubt, go with the LTS installation.
+
+1. Install the Salesforce CLI using `npm`:
+
+   ```bash
+   npm install --global @salesforce/cli
    ```
-   sf plugins install dev
-   sf dev generate plugin
 
-   git init -b main
-   git add . && git commit -m "chore: initial commit"
+1. Install Atlas as a Salesforce CLI plugin:
+
+   ```bash
+   sf plugins install plugin-atlas
    ```
 
-3. Create your plugin's repo in the salesforcecli github org
-4. When you're ready, replace the contents of this README with the information you want.
+## How to update
 
-## Learn about `sf` plugins
+1. Update the Salesforce CLI. It is the same command as installing it from scratch:
 
-Salesforce CLI plugins are based on the [oclif plugin framework](<(https://oclif.io/docs/introduction.html)>). Read the [plugin developer guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_plugins.meta/sfdx_cli_plugins/cli_plugins_architecture_sf_cli.htm) to learn about Salesforce CLI plugin development.
+   ```bash
+   npm install --global @salesforce/cli
+   ```
 
-This repository contains a lot of additional scripts and tools to help with general Salesforce node development and enforce coding standards. You should familiarize yourself with some of the [node developer packages](#tooling) used by Salesforce.
+1. Update all the Salesforce CLI plugins:
 
-Additionally, there are some additional tests that the Salesforce CLI will enforce if this plugin is ever bundled with the CLI. These test are included by default under the `posttest` script and it is required to keep these tests active in your plugin if you plan to have it bundled.
+   ```bash
+   sf plugins update
+   ```
 
-### Tooling
+If the update fails, you can uninstall the plugin with `sf plugins uninstall plugin-atlas` and then reinstall it.
 
-- [@salesforce/core](https://github.com/forcedotcom/sfdx-core)
-- [@salesforce/kit](https://github.com/forcedotcom/kit)
-- [@salesforce/sf-plugins-core](https://github.com/salesforcecli/sf-plugins-core)
-- [@salesforce/ts-types](https://github.com/forcedotcom/ts-types)
-- [@salesforce/ts-sinon](https://github.com/forcedotcom/ts-sinon)
-- [@salesforce/dev-config](https://github.com/forcedotcom/dev-config)
-- [@salesforce/dev-scripts](https://github.com/forcedotcom/dev-scripts)
+## Features
 
-### Hooks
+Currently supported output format:
 
-For cross clouds commands, e.g. `sf env list`, we utilize [oclif hooks](https://oclif.io/docs/hooks) to get the relevant information from installed plugins.
+- Excel spreadsheet (`xlsx`), with each metadata type (objects, fields, list views, etc) in separate tabs.
 
-This plugin includes sample hooks in the [src/hooks directory](src/hooks). You'll just need to add the appropriate logic. You can also delete any of the hooks if they aren't required for your plugin.
+Currently supported metadata types:
 
-# Everything past here is only a suggestion as to what should be in your specific plugin's description
+- Objects
+- Fields
+- Record types
+- Fieldsets
+- Layouts
+- List views
+- Compact layouts
+- Tabs
+- Quick actions
+- Validation rules
+- Weblinks
+- Flexipages (Lightning pages)
+- Apex classes and triggers
+- Visualforce pages and components
+- Aura components
+- Lightning web components
+- Flows
+- Workflow rules
+- Profiles
+- Roles
+- Permission Sets
+- Permission Set Groups
+- User Access Policies
 
-This plugin is bundled with the [Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli). For more information on the CLI, read the [getting started guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm).
+## Roadmap
 
-We always recommend using the latest version of these commands bundled with the CLI, however, you can install a specific version or tag if needed.
+### Features
 
-## Install
+- Additional output formats:
+  - Multiple spreadsheets
+  - Multiple CSV files
+  - Markdown websites
+  - HTML websites
+- Enhance existing functionality:
+  - Increase the number of metadata types included in the output
+  - Make more information available for existing types
+  - Quality of life improvements:
+    - Choose the target file name and location
+    - Select which metadata types should be included
 
-```bash
-sf plugins install plugin-documentation@x.y.z
-```
+### Maintenance and internal
 
-## Issues
+- Increase test coverage
+- Set up an automated release pipeline
+- Continue to maintain
 
-Please report any issues at https://github.com/forcedotcom/cli/issues
+<br/><br/>
 
-## Contributing
-
-1. Please read our [Code of Conduct](CODE_OF_CONDUCT.md)
-2. Create a new issue before starting your project so that we can keep track of
-   what you are trying to add/fix. That way, we can also offer suggestions or
-   let you know if there is already an effort in progress.
-3. Fork this repository.
-4. [Build the plugin locally](#build)
-5. Create a _topic_ branch in your fork. Note, this step is recommended but technically not required if contributing using a fork.
-6. Edit the code in your fork.
-7. Write appropriate tests for your changes. Try to achieve at least 95% code coverage on any new code. No pull request will be accepted without unit tests.
-8. Sign CLA (see [CLA](#cla) below).
-9. Send us a pull request when you are done. We'll review your code, suggest any needed changes, and merge it in.
-
-### CLA
-
-External contributors will be required to sign a Contributor's License
-Agreement. You can do so by going to https://cla.salesforce.com/sign-cla.
-
-### Build
-
-To build the plugin locally, make sure to have yarn installed and run the following commands:
-
-```bash
-# Clone the repository
-git clone git@github.com:salesforcecli/plugin-documentation
-
-# Install the dependencies and compile
-yarn && yarn build
-```
-
-To use your plugin, run using the local `./bin/dev` or `./bin/dev.cmd` file.
-
-```bash
-# Run using local run file.
-./bin/dev hello world
-```
-
-There should be no differences when running via the Salesforce CLI or using the local run file. However, it can be useful to link the plugin to do some additional testing or run your commands from anywhere on your machine.
-
-```bash
-# Link your plugin to the sf cli
-sf plugins link .
-# To verify
-sf plugins
-```
-
-## Commands
+# Commands
 
 <!-- commands -->
 
-- [`sf hello world`](#sf-hello-world)
+- [`sf atlas generate csv`](#sf-atlas-generate-csv)
+- [`sf atlas generate xlsx`](#sf-atlas-generate-xlsx)
 
-## `sf hello world`
+## `sf atlas generate csv`
 
-Say hello either to the world or someone you know.
+Generate CSV files from the contents of your local project, with a separate file for each supported metadata type.
 
 ```
 USAGE
-  $ sf hello world [--json] [-n <value>]
+  $ sf atlas generate csv [--json] [-d <value>]
 
 FLAGS
-  -n, --name=<value>  [default: World] The name of the person you'd like to say hello to.
+  -d, --output-dir=<value>  [default: PROJECT_FOLDER/atlas/csv/YYYYMMDD-HHMMSS/] Folder where the CSV files will be
+                            saved.
 
 GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
-  Say hello either to the world or someone you know.
+  Generate CSV files from the contents of your local project, with a separate file for each supported metadata type.
 
-  Say hello either to the world or someone you know.
+  You must run this command from within a project.
 
 EXAMPLES
-  Say hello to the world:
+  $ sf atlas generate csv
 
-    $ sf hello world
+FLAG DESCRIPTIONS
+  -d, --output-dir=<value>  Folder where the CSV files will be saved.
 
-  Say hello to someone you know:
+    More information about a flag. Don't repeat the summary.
+```
 
-    $ sf hello world --name Astro
+## `sf atlas generate xlsx`
+
+Generate an XLSX spreadsheet from the contents of your local project, with a sheet for each supported metadata type.
+
+```
+USAGE
+  $ sf atlas generate xlsx [--json] [-f <value>]
+
+FLAGS
+  -f, --output-file=<value>  [default: PROJECT_FOLDER/atlas/xlsx/atlas-YYYYMMDD-HHMMSS.xlsx] Name and path of the XLSX
+                             file to be generated.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Generate an XLSX spreadsheet from the contents of your local project, with a sheet for each supported metadata type.
+
+  You must run this command from within a project.
+
+EXAMPLES
+  $ sf atlas generate xlsx
+
+FLAG DESCRIPTIONS
+  -f, --output-file=<value>  Name and path of the XLSX file to be generated.
+
+    More information about a flag. Don't repeat the summary.
 ```
 
 <!-- commandsstop -->
