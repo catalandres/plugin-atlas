@@ -1383,11 +1383,12 @@
     read-package-json-fast "^3.0.0"
     which "^3.0.0"
 
-"@oclif/core@^3.15.0", "@oclif/core@^3.15.1", "@oclif/core@^3.16.0", "@oclif/core@^3.18.0":
-  version "3.18.0"
-  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-3.18.0.tgz#3f594d2509d9b4e8981f0b6b1a318826979dd2f2"
-  integrity sha512-xPuN3kT87WXHvkyZIrPyp87VLIEkreQqVpCIcLtIGjZ0a7/0c7c4j6NjGApHp5rz/5lprW/i1FPt3IvrrNlMeA==
+"@oclif/core@^3.15.0", "@oclif/core@^3.15.1", "@oclif/core@^3.16.0", "@oclif/core@^3.18.1":
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-3.18.1.tgz#a8c9ee3848ad663d5694bef6079116c70d32fc55"
+  integrity sha512-l0LsjzGcqjbUEdeSBX6bdZieVmEv82Q0W3StiyaDMEnPZ9KLH28HrLpcZg6d50mCYW9CUZNzmRo6qrCHWrgLKw==
   dependencies:
+    "@types/cli-progress" "^3.11.5"
     ansi-escapes "^4.3.2"
     ansi-styles "^4.3.0"
     cardinal "^2.1.1"
