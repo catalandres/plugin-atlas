@@ -1,4 +1,3 @@
-import * as path from 'node:path';
 import { readdir } from 'node:fs/promises';
 import { NamedPackageDir, SfProject } from '@salesforce/core';
 
@@ -29,32 +28,4 @@ export async function getAllProjectFiles(projectPath: string): Promise<string[]>
     metadata.push(...items.map((item) => thisPackageDirectory.fullPath + item));
   }
   return metadata;
-}
-
-export function generateDefaultXlsxFilename(projectPath: string | undefined = undefined): string {
-  let isoDateString: string = 'YYYYMMDD-HHMMSS';
-
-  if (projectPath === undefined) {
-    projectPath = 'PROJECT_FOLDER';
-  } else {
-    isoDateString = getNowIsoString();
-  }
-
-  return [projectPath, 'atlas', 'xlsx', 'atlas-' + isoDateString + '.xlsx'].join(path.sep);
-}
-
-export function generateDefaultCsvDirname(projectPath: string | undefined = undefined): string {
-  let isoDateString: string = 'YYYYMMDD-HHMMSS';
-
-  if (projectPath === undefined) {
-    projectPath = 'PROJECT_FOLDER';
-  } else {
-    isoDateString = getNowIsoString();
-  }
-
-  return [projectPath, 'atlas', 'csv', isoDateString, ''].join(path.sep);
-}
-
-function getNowIsoString(): string {
-  return new Date().toISOString().split('.')[0].replaceAll('-', '').replaceAll(':', '').replace('T', '-');
 }

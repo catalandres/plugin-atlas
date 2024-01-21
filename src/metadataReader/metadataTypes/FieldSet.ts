@@ -1,4 +1,4 @@
-import { FieldSet } from '../../metadata/metadata.js';
+import * as Metadata from '../../metadata/metadata.js';
 import {
   MetadataType,
   getBasenameWithoutExtension,
@@ -6,11 +6,11 @@ import {
   concatenateObjectNameAndName,
 } from '../metadataTypes.js';
 
-export const FIELD_SET: MetadataType = {
+export const FIELD_SET: MetadataType<Metadata.FieldSet> = {
   name: 'FieldSet',
   list: 'fieldSets',
   extension: '.fieldSet-meta.xml',
-  metadataType: {} as FieldSet,
+  metadataType: {} as Metadata.FieldSet,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
   setFullName: concatenateObjectNameAndName,

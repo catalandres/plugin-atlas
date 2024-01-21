@@ -1,4 +1,4 @@
-import { ValidationRule } from '../../metadata/metadata.js';
+import * as Metadata from '../../metadata/metadata.js';
 import {
   MetadataType,
   getBasenameWithoutExtension,
@@ -6,11 +6,11 @@ import {
   concatenateObjectNameAndName,
 } from '../metadataTypes.js';
 
-export const VALIDATION_RULE: MetadataType = {
+export const VALIDATION_RULE: MetadataType<Metadata.ValidationRule> = {
   name: 'ValidationRule',
   list: 'validationRules',
   extension: '.validationRule-meta.xml',
-  metadataType: {} as ValidationRule,
+  metadataType: {} as Metadata.ValidationRule,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
   setFullName: concatenateObjectNameAndName,

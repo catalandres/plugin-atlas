@@ -1,25 +1,19 @@
-import { Workflow, WorkflowRule } from '../../metadata/metadata.js';
-import {
-  MetadataType,
-  getFullNameValue,
-  getBasenameWithoutExtension,
-  concatenateObjectNameAndName,
-} from '../metadataTypes.js';
+import * as Metadata from '../../metadata/metadata.js';
+// import {
+//   MetadataType,
+//   getFullNameValue,
+//   getBasenameWithoutExtension,
+//   concatenateObjectNameAndName,
+// } from '../metadataTypes.js';
+import * as MetadataTypes from '../metadataTypes.js';
 
-export const WORKFLOW: MetadataType = {
+export const WORKFLOW: MetadataTypes.MetadataType<Metadata.Workflow> = {
   name: 'Workflow',
   list: 'workflows',
   extension: '.workflow-meta.xml',
   container: true,
-  metadataType: {} as Workflow,
+  metadataType: {} as Metadata.Workflow,
   children: {
-    rules: {
-      name: 'WorkflowRule',
-      list: 'workflowRules',
-      metadataType: {} as WorkflowRule,
-      setName: getFullNameValue,
-      setObjectname: getBasenameWithoutExtension,
-      setFullName: concatenateObjectNameAndName,
-    },
+    rules: MetadataTypes.WORKFLOW_RULE,
   },
 };

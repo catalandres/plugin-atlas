@@ -1,4 +1,4 @@
-import { QuickAction } from '../../metadata/metadata.js';
+import * as Metadata from '../../metadata/metadata.js';
 import {
   MetadataType,
   getBasenameWithoutExtension,
@@ -6,11 +6,11 @@ import {
   getSecondHalfOfBasenameSplitByPeriod,
 } from '../metadataTypes.js';
 
-export const QUICK_ACTION: MetadataType = {
+export const QUICK_ACTION: MetadataType<Metadata.QuickAction> = {
   name: 'QuickAction',
   list: 'quickActions',
   extension: '.quickAction-meta.xml',
-  metadataType: {} as QuickAction,
+  metadataType: {} as Metadata.QuickAction,
   setName: getSecondHalfOfBasenameSplitByPeriod,
   setObjectname: getFirstHalfOfBasenameSplitByPeriod,
   setFullName: getBasenameWithoutExtension,

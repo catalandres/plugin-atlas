@@ -32,16 +32,7 @@ export * from './transformFunctions.js';
 
 export type Album = Record<string, Array<Extended<Metadata>>>;
 
-export interface ExtendedMetadata {
-  [key: string]: unknown;
-  name: string;
-  objectName: string;
-  fullName: string;
-  fileName: string;
-}
-
 export type Extended<T> = T &
-  ExtendedMetadata &
   Record<string, unknown> & {
     name: string;
     objectName: string;
@@ -49,17 +40,32 @@ export type Extended<T> = T &
     fileName: string;
   };
 
-export interface MetadataType {
+export interface GenericMetadataType {
   readonly name: string;
   readonly list: string;
   readonly extension?: string;
   readonly metadataType: Metadata;
+  readonly documentationUrl?: string;
   readonly container?: boolean;
-  readonly setName?: (record: Extended<Metadata>) => string;
-  readonly setObjectname?: (record: Extended<Metadata>) => string;
-  readonly setFullName?: (record: Extended<Metadata>) => string;
-  readonly setLabel?: (record: Extended<Metadata>) => string;
+  readonly setName?: (record: Record<string, unknown>) => string;
+  readonly setObjectname?: (record: Record<string, unknown>) => string;
+  readonly setFullName?: (record: Record<string, unknown>) => string;
+  readonly setLabel?: (record: Record<string, unknown>) => string;
   readonly transform?: (record: Record<string, unknown>) => void;
-  readonly process?: Array<(record: Extended<Metadata>) => Array<Extended<Metadata>>>;
-  readonly children?: Record<string, MetadataType>;
+  readonly children?: Record<string, GenericMetadataType>;
+}
+
+export interface MetadataType<T extends Metadata> extends GenericMetadataType {
+  // readonly name: string;
+  // readonly list: string;
+  // readonly extension?: string;
+  readonly metadataType: T;
+  readonly documentationUrl?: string;
+  readonly container?: boolean;
+  readonly setName?: (record: Record<string, unknown>) => string;
+  readonly setObjectname?: (record: Record<string, unknown>) => string;
+  readonly setFullName?: (record: Record<string, unknown>) => string;
+  readonly setLabel?: (record: Record<string, unknown>) => string;
+  readonly transform?: (record: Record<string, unknown>) => void;
+  readonly children?: Record<string, GenericMetadataType>;
 }

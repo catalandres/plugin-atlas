@@ -18828,7 +18828,7 @@ export interface TimeSheetTemplateAssignment {
 
 export interface TimelineObjectDefinition extends Metadata {
   baseObject: string;
-  definition: string;
+  metadataType: string;
   isActive?: boolean;
   masterLabel: string;
 }

@@ -1,4 +1,4 @@
-import { CompactLayout } from '../../metadata/metadata.js';
+import * as Metadata from '../../metadata/metadata.js';
 import {
   MetadataType,
   getBasenameWithoutExtension,
@@ -6,11 +6,11 @@ import {
   concatenateObjectNameAndName,
 } from '../metadataTypes.js';
 
-export const COMPACT_LAYOUT: MetadataType = {
+export const COMPACT_LAYOUT: MetadataType<Metadata.CompactLayout> = {
   name: 'CompactLayout',
   list: 'compactLayouts',
   extension: '.compactLayout-meta.xml',
-  metadataType: {} as CompactLayout,
+  metadataType: {} as Metadata.CompactLayout,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
   setFullName: concatenateObjectNameAndName,

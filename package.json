@@ -6,7 +6,10 @@
     "@oclif/core": "^3.18.0",
     "@salesforce/core": "^6.4.7",
     "@salesforce/sf-plugins-core": "^5.0.5",
+    "@types/fs-extra": "^11.0.4",
     "exceljs": "^4.4.0",
+    "fs-extra": "^11.2.0",
+    "ts-markdown": "^1.0.0",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
@@ -68,9 +71,9 @@
     "docs": "sf-docs",
     "format": "wireit",
     "lint": "wireit",
-    "postinstall": "yarn husky install",
     "postpack": "shx rm -f oclif.manifest.json oclif.lock",
     "prepack": "sf-prepack",
+    "prepare": "sf-install && yarn build",
     "test": "wireit",
     "test:nuts": "nyc mocha \"**/*.nut.ts\" --slow 4500 --timeout 600000 --parallel",
     "test:only": "wireit",
@@ -152,7 +155,7 @@
       "output": []
     },
     "test:command-reference": {
-      "command": "\"./bin/dev\" commandreference:generate --erroronwarnings",
+      "command": "ts-node \"./bin/dev.js\" commandreference:generate --erroronwarnings",
       "files": [
         "src/**/*.ts",
         "messages/**",
@@ -163,7 +166,7 @@
       ]
     },
     "test:deprecation-policy": {
-      "command": "\"./bin/dev\" snapshot:compare",
+      "command": "ts-node \"./bin/dev.js\" snapshot:compare",
       "files": [
         "src/**/*.ts"
       ],
@@ -173,7 +176,7 @@
       ]
     },
     "test:json-schema": {
-      "command": "\"./bin/dev\" schema:compare",
+      "command": "ts-node \"./bin/dev.js\" schema:compare",
       "files": [
         "src/**/*.ts",
         "schemas"
@@ -183,5 +186,6 @@
   },
   "exports": "./lib/index.js",
   "type": "module",
-  "author": "catalandres"
+  "author": "catalandres",
+  "packageManager": "yarn@1.22.21"
 }

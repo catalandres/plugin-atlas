@@ -1,10 +1,10 @@
-import { PermissionSetGroup } from '../../metadata/metadata.js';
+import * as Metadata from '../../metadata/metadata.js';
 import { MetadataType, getBasenameWithoutExtension } from '../metadataTypes.js';
 
-export const PERMISSION_SET_GROUP: MetadataType = {
+export const PERMISSION_SET_GROUP: MetadataType<Metadata.PermissionSetGroup> = {
   name: 'PermissionSetGroup',
   list: 'permissionSetGroups',
   extension: '.permissionsetgroup-meta.xml',
-  metadataType: {} as PermissionSetGroup,
+  metadataType: {} as Metadata.PermissionSetGroup,
   setName: getBasenameWithoutExtension,
 };

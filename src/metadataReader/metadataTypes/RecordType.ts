@@ -1,4 +1,4 @@
-import { RecordType } from '../../metadata/metadata.js';
+import * as Metadata from '../../metadata/metadata.js';
 import {
   MetadataType,
   getBasenameWithoutExtension,
@@ -6,11 +6,11 @@ import {
   concatenateObjectNameAndName,
 } from '../metadataTypes.js';
 
-export const RECORD_TYPE: MetadataType = {
+export const RECORD_TYPE: MetadataType<Metadata.RecordType> = {
   name: 'RecordType',
   list: 'recordTypes',
   extension: '.recordType-meta.xml',
-  metadataType: {} as RecordType,
+  metadataType: {} as Metadata.RecordType,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
   setFullName: concatenateObjectNameAndName,

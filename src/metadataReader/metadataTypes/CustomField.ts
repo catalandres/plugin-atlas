@@ -1,4 +1,4 @@
-import { CustomField } from '../../metadata/metadata.js';
+import * as Metadata from '../../metadata/metadata.js';
 import {
   MetadataType,
   getBasenameWithoutExtension,
@@ -6,11 +6,11 @@ import {
   concatenateObjectNameAndName,
 } from '../metadataTypes.js';
 
-export const CUSTOM_FIELD: MetadataType = {
+export const CUSTOM_FIELD: MetadataType<Metadata.CustomField> = {
   name: 'CustomField',
   list: 'fields',
   extension: '.field-meta.xml',
-  metadataType: {} as CustomField,
+  metadataType: {} as Metadata.CustomField,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
   setFullName: concatenateObjectNameAndName,

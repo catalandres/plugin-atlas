@@ -1,4 +1,4 @@
-import { WebLink } from '../../metadata/metadata.js';
+import * as Metadata from '../../metadata/metadata.js';
 import {
   MetadataType,
   getBasenameWithoutExtension,
@@ -6,11 +6,11 @@ import {
   concatenateObjectNameAndName,
 } from '../metadataTypes.js';
 
-export const WEBLINK: MetadataType = {
+export const WEBLINK: MetadataType<Metadata.WebLink> = {
   name: 'WebLink',
   list: 'webLinks',
   extension: '.webLink-meta.xml',
-  metadataType: {} as WebLink,
+  metadataType: {} as Metadata.WebLink,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
   setFullName: concatenateObjectNameAndName,

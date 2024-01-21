@@ -2,7 +2,8 @@ import * as fs from 'node:fs';
 import * as xml2js from 'xml2js';
 import { array } from '../util.js';
 import { getMetadataExtension } from '../util.js';
-import { Extended, ExtendedMetadata, Album, MetadataType } from './metadataTypes.js';
+import { Metadata } from '../metadata/metadata.js';
+import { Extended, Album, MetadataType, GenericMetadataType } from './metadataTypes.js';
 
 import { ALL_METADATA_TYPES } from './allMetadataTypes.js';
 
@@ -10,14 +11,14 @@ export class MetadataReader {
   public album: Album = {};
   private projectFilenames: string[];
   private metadataFilenames: string[];
-  private fileTypesByExtension: Map<string, MetadataType>;
+  private fileTypesByExtension: Map<string, GenericMetadataType>;
   private metadataExtensions: Set<string>;
 
   public constructor(projectFilenames: string[]) {
     this.projectFilenames = projectFilenames;
     this.fileTypesByExtension = new Map();
 
-    for (const thisMetadataType of ALL_METADATA_TYPES) {
+    for (const thisMetadataType of ALL_METADATA_TYPES as GenericMetadataType[]) {
       if (thisMetadataType.extension) {
         this.fileTypesByExtension.set(thisMetadataType.extension, thisMetadataType);
       }
@@ -27,7 +28,7 @@ export class MetadataReader {
     this.metadataFilenames = this.projectFilenames.filter((theFile) => this.isMetadataFile(theFile));
 
     for (const thisFile of this.metadataFilenames) {
-      const thisMetadataType: MetadataType = this.fileTypesByExtension.get(getMetadataExtension(thisFile))!;
+      const thisMetadataType: GenericMetadataType = this.fileTypesByExtension.get(getMetadataExtension(thisFile))!;
       const xml = fs.readFileSync(thisFile, 'utf-8');
       this.absorb(getMetadata<Extended<typeof thisMetadataType.metadataType>>(xml, thisFile, thisMetadataType));
     }
@@ -58,10 +59,10 @@ const parserOptions: xml2js.ParserOptions = {
   ],
 };
 
-function getMetadata<T extends ExtendedMetadata>(xml: string, fileName: string, definition: MetadataType): Album {
+function getMetadata<T extends Metadata>(xml: string, fileName: string, definition: GenericMetadataType): Album {
   const album: Album = {};
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-  xml2js.parseString(xml, parserOptions, (err, result: Record<string, T>) => {
+  xml2js.parseString(xml, parserOptions, (err, result: Record<string, Extended<T>>) => {
     const theRecord = result[definition.name];
     if (!definition.container) {
       treatRecord(theRecord, definition, fileName);
@@ -74,7 +75,7 @@ function getMetadata<T extends ExtendedMetadata>(xml: string, fileName: string, 
         const records = array(theRecord[listName]) as Array<Extended<typeof thisMetadataType.metadataType>>;
         for (const thisRecord of records) {
           treatRecord(thisRecord, thisMetadataType, fileName);
-          album[thisMetadataType.list].push(thisRecord as T);
+          album[thisMetadataType.list].push(thisRecord as Extended<T>);
         }
       }
     }
@@ -82,11 +83,7 @@ function getMetadata<T extends ExtendedMetadata>(xml: string, fileName: string, 
   return album;
 }
 
-function treatRecord<T extends ExtendedMetadata>(
-  record: Extended<T>,
-  metadataType: MetadataType,
-  fileName: string
-): void {
+function treatRecord<T extends Metadata>(record: Extended<T>, metadataType: MetadataType<T>, fileName: string): void {
   record.fileName = fileName;
   if (metadataType.setName) {
     record.name = metadataType.setName(record);

@@ -6,11 +6,11 @@ Summary of a command.
 
 More information about a command. Don't repeat the summary.
 
-# flags.name.summary
+# flags.output-dir.summary
 
-Description of a flag.
+Folder where the Markdown files will be saved.
 
-# flags.name.description
+# flags.output-dir.description
 
 More information about a flag. Don't repeat the summary.
 

@@ -1,4 +1,4 @@
-import { ListView } from '../../metadata/metadata.js';
+import * as Metadata from '../../metadata/metadata.js';
 import {
   MetadataType,
   getBasenameWithoutExtension,
@@ -6,11 +6,11 @@ import {
   concatenateObjectNameAndName,
 } from '../metadataTypes.js';
 
-export const LIST_VIEW: MetadataType = {
+export const LIST_VIEW: MetadataType<Metadata.ListView> = {
   name: 'ListView',
   list: 'listViews',
   extension: '.listView-meta.xml',
-  metadataType: {} as ListView,
+  metadataType: {} as Metadata.ListView,
   setName: getBasenameWithoutExtension,
   setObjectname: getNameOfSecondToLastFolderLevel,
   setFullName: concatenateObjectNameAndName,
