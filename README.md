@@ -1,4 +1,4 @@
-# Atlas
+![ATLAS](https://github.com/catalandres/plugin-atlas/assets/1649037/66844dc5-23f3-4a4e-bd12-b80f5421f710)
 
 [![NPM](https://img.shields.io/npm/v/plugin-atlas.svg?label=plugin-atlas)](https://www.npmjs.com/package/plugin-atlas) [![Downloads/week](https://img.shields.io/npm/dw/plugin-atlas.svg)](https://npmjs.org/package/plugin-atlas) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-documentation/main/LICENSE.txt)
 
