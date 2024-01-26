@@ -4,7 +4,7 @@
   "version": "0.3.2",
   "dependencies": {
     "@oclif/core": "^3.18.1",
-    "@salesforce/core": "^6.4.7",
+    "@salesforce/core": "^6.5.1",
     "@salesforce/sf-plugins-core": "^5.0.5",
     "exceljs": "^4.4.0",
     "xml2js": "^0.6.2"
@@ -16,7 +16,7 @@
     "@types/cli-progress": "^3.11.5",
     "@types/xml2js": "^0.4.14",
     "eslint-plugin-sf-plugin": "^1.17.2",
-    "oclif": "^4.3.6",
+    "oclif": "^4.3.10",
     "shx": "0.3.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
